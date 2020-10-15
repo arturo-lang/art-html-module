@@ -1,2 +1,4 @@
+description: "HTML generator for Arturo"
 version: "0.1"
 dependencies: []
+author: "Yanis Zafirópulos"
