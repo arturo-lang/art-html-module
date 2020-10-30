@@ -1,2 +1,2 @@
-# html-module
+# art-html-module
 HTML generator for Arturo
