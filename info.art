@@ -1,5 +1,1 @@
-description: "HTML generator for Arturo"
-author: "Yanis Zafirópulos"
-
-depends: []
 requires: [> 0.9.83]
