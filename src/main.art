@@ -1,0 +1,20 @@
+
+
+define :htmlModule [
+
+    element: method [tag :string content :block :string][
+        if block? content ->
+            join.with: "\n" @[
+                ~"<|tag|>" 
+                indent.n: 2 join.with: "\n" @content
+                ~"</|tag|>"
+            ] 
+
+        if string? content ->
+            ~"<|tag|>|content|</|tag|>"
+    ]
+
+]
+
+
+artml: to :htmlModule []

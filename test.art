@@ -1,0 +1,9 @@
+#! arturo
+
+import.version: 1.1.2 'unitt!
+
+testPath: "test"
+
+runTests (empty? arg)? 
+     -> findTests.thatMatches: "*.test.art" testPath
+     -> map arg 'file [ ~"|testPath|/|file|.test.art" ]

@@ -1,0 +1,80 @@
+import {unitt}!
+import {src/main.art}!
+
+test "follows the right W3C tagging format when passing string" [
+    result: artml\element "el" "Hello, World!"
+    assert -> "<el>Hello, World!</el>" = 
+        result
+]
+
+
+test "follows the right W3C tagging format when passing blocks" [
+    ;; This test tests multiple things:
+    ;; * Opening and closing tags:
+    ;;      Each element should be opened and closed
+    ;; * Indentation
+    ;;      Two spaces must be added per element nesting
+    ;; * Evaluation
+    ;;      the user shouldn't use '@ to evaluate, the element must do it
+
+    breakLine: "<br>"
+    bold: $[x][artml\element "b" x]
+    paragraph: $[x][artml\element "p" x]
+
+    expect: {!html
+        <p>
+          Hello,
+          <br>
+          <b>World</b>
+          !
+        </p>
+    }
+
+    result: paragraph [
+        "Hello,"
+        breakLine
+        bold "World" "!"
+    ]
+
+    assert -> expect = result
+]
+
+test "indentation follows the nesting of elements" [
+    ;; Also verifies the nesting for strings
+    ;;
+    ;; How the formatation must work:
+    ;;
+    ;; tag "Content" 
+    ;; ; <tag>Content</tag>
+    ;;
+    ;; tag ["Content"] 
+    ;; ; <tag>
+    ;; ;   Content
+    ;; ; </tag>
+
+    divisory: $[x][artml\element "div" x]
+
+    expect: {!html
+        <div>
+          Level 01
+          <div>
+            Level 02
+            <div>Level 03</div>
+            Level 02
+          </div>
+          Level 01
+        </div>
+    }
+
+    result: divisory [
+        "Level 01"
+        divisory [
+            "Level 02"
+            divisory "Level 03"
+            "Level 02"
+        ]
+        "Level 01"
+    ]
+
+    assert -> expect = result
+]
