@@ -1,14 +1,14 @@
 import {unitt}!
-import {src/main.art}!
+import {src/html.art}!
 
-test "follows the right W3C tagging format when passing string" [
+test "generic elements follows the standard for :string" [
     result: artml\element "el" "Hello, World!"
     assert -> "<el>Hello, World!</el>" = 
         result
 ]
 
 
-test "follows the right W3C tagging format when passing blocks" [
+test "generic elements follows the standard for nested :block s" [
     ;; This test tests multiple things:
     ;; * Opening and closing tags:
     ;;      Each element should be opened and closed
@@ -74,6 +74,42 @@ test "indentation follows the nesting of elements" [
             "Level 02"
         ]
         "Level 01"
+    ]
+
+    assert -> expect = result
+]
+
+test "dynamic attributes follows standard" [
+    ;; We can dynamically add Elements's attributes by using Arturo's attributes
+    ;;
+    ;; How this must work:
+    ;;
+    ;; tag.class: "content" "Content" 
+    ;; ; <tag class="content">Content</tag>
+    ;;
+    ;; tag.author: "RickB" ["Content"] 
+    ;; ; <tag author="RickB">
+    ;; ;   Content
+    ;; ; </tag>
+
+    divisory: $[x][artml\element "div" x]
+    entry: $[x][artml\element .name: x "input" ""]
+    button: $[x][artml\element "button" x]
+
+    expect: {!html
+        <div class="login-box">
+          <input type="email" name="user"></input>
+          <input type="password" name="pwd"></input>
+          <button class="enter">Log In</button>
+          <button class="recover">Forgot my password</button>
+        </div>
+    }
+
+    result: divisory.class: "login-box" [
+        entry.type: 'email "user" 
+        entry.type: 'password "pwd"
+        button.class: 'enter "Log In"
+        button.class: 'recover "Forgot my password"
     ]
 
     assert -> expect = result

@@ -3,15 +3,18 @@
 define :htmlModule [
 
     element: method [tag :string content :block :string][
+        attributes: (join.with: " " map attrs [key value] -> render {|key|="|value|"})
+        if attributes <> "" -> prepend 'attributes " "
+
         if block? content ->
             join.with: "\n" @[
-                ~"<|tag|>" 
+                ~"<|tag||attributes|>" 
                 indent.n: 2 join.with: "\n" @content
                 ~"</|tag|>"
             ] 
 
         if string? content ->
-            ~"<|tag|>|content|</|tag|>"
+            ~"<|tag||attributes|>|content|</|tag|>"
     ]
 
 ]
