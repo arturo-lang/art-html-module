@@ -16,6 +16,27 @@ define :htmlModule [
         if string? content ->
             ~"<|tag||attributes|>|content|</|tag|>"
     ]
+    
+    voidElement: method [tag :string :literal][
+        ;; Void elements are elements without closing-tags.
+        ;;
+        ;; Format
+        ;; ------
+        ;; They follows the pattern: ``<tag key="value" .../>``
+        ;; 
+        ;; Features
+        ;; --------
+        ;; Use Arturo's attributes to dynamically add html's attributes to it.
+        ;;
+        ;; Extra
+        ;; -----
+        ;; Read more about void elements here: 
+        ;; <https://html.spec.whatwg.org/multipage/syntax.html#void-elements/>
+        
+        attributes: (join.with: " " map attrs [key value] -> render {|key|="|value|"})
+        if attributes <> "" -> prepend 'attributes " "
+        ~"<|tag||attributes|/>" 
+    ]
 
 ]
 
