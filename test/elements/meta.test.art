@@ -1,0 +1,154 @@
+import {unitt}!
+import {src/html.art}!
+
+suite "<base/>" [
+    test.skip "<base/> must have 'href, 'target or both" [
+        ; None
+        result: artml\base #[]
+        assert -> throws? [result]
+        
+        ; With href
+        result: artml\base #[href: "https://example.com"]
+        assert -> not? throws? [result]
+        
+        ; With target
+        result: artml\base #[target: "_blank"]
+        assert -> not? throws? [result]
+        
+        ; With both
+        result: artml\base #[href: "https://example.com" target: "_blank"]
+        assert -> not? throws? [result]
+    ]
+
+    test.skip "<base/> must be void and follow the standard" [
+        expect: {!html
+            <base href="https://example.com" target="_blank"/>
+        }
+
+        result: base #[href: "https://example.com" target: "_blank"]
+        assert -> expect = result
+    ]
+]
+
+
+suite "<link/>" [
+    test.skip "<link/> gets two arguments 'rel and 'href" [
+        assert -> not? throws? [artml\metaLink "stylesheet" "style.css"]
+        assert -> throws? [artml\metaLink "stylesheet"]
+        assert -> throws? [artml\metaLink]
+    ]
+
+    test.skip "<link/> takes :string-like arguments" [
+        assert -> not? throws? [artml\metaLink "stylesheet" "style.css"]
+        assert -> not? throws? [artml\metaLink :stylesheet "style.css"]
+        assert -> not? throws? [artml\metaLink 'stylesheet "style.css"]
+
+        assert -> not? throws? [artml\metaLink ["stylesheet"] "style.css"]
+        assert -> not? throws? [artml\metaLink :stylesheet ["style.css"]]
+        assert -> not? throws? [artml\metaLink ['stylesheet] ["style.css"]]
+    ]
+
+    test.skip "<link/> .size gets an :integer and converts to standard" [
+        expect: {!html
+            <link rel="apple-touch-icon" size="70x70" href="icon.png" />
+        }
+
+        result: artml\metaLink.size: 70 "apple-touch-icon" "icon.png"
+        assert -> expect = result
+    ]
+
+    test.skip "<link/>'s .size does not influences other attributes" [
+        expect: {!html
+            <link rel="apple-touch-icon" href="icon.png" size="70x70" type="image/png" />
+        }
+
+        result: artml\metaLink.size: 70 .type: "image/png" 
+            "apple-touch-icon" "icon.png"
+        assert -> expect = result
+    ]
+
+    test.skip "<link/> is a void element and follows the standard" [
+        expect: {!html
+            <head>
+              <title></title>
+              <link rel="icon" href="icon.ico" />
+              <link rel="stylesheet" href="style.css" />
+              <link rel="apple-touch-icon" href="icon.png" size="70x70" />
+            </head>
+        }
+
+        result: artml\head [
+            title ""
+            link :icon "icon.ico"
+            link :stylesheet "style.css"
+            link.size: 70 "apple-touch-icon" "icon.png"
+        ]
+
+        assert -> expect = result
+    ]
+
+]
+
+suite "<meta/>" [
+    test.skip "<meta/> is a void element and gets a :dictionary" [
+        expect: {!html
+            <head>
+              <title></title>
+              <meta charset="utf-8" />
+              <meta http-equiv="content-security-policy" content="..." />
+              <meta name="twitter:card" content="summary" />
+            <head/>
+        }
+
+        result: artml\html [
+            title ""
+            meta #[charset: "utf-8"]
+            meta #["http-equiv": "content-security-policy" content: "..."]
+            meta #[name: "twitter?card" content: "summary"]
+        ]
+
+        assert -> expect = result
+    ]
+]
+
+suite "<style/>" [
+
+    test.skip "<style/> only gets a :string" [
+        assert -> not? throws? [artml\style ""]
+        assert -> throws? [artml\style [""]]
+    ]
+
+    test.skip "<style/> is a normal element and follows the standard" [
+        expect: {!html
+            <style media="max-width: 720px">
+              p {
+                  color: black;
+              }
+            </style>
+        }
+
+        result: artml\style {!css
+            p {
+                color: black;
+            }
+        }
+
+        assert -> expect = result
+
+    ]
+
+]
+
+suite "<title/>" [
+
+    test.skip "<title/> is a normal element and follows the standard" [
+        expect: {!html
+            <title>Arturo Language!</title>
+        }
+
+        result: artml\title "Arturo Language!"
+        assert -> expect = result
+
+    ]
+
+]
