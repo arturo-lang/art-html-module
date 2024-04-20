@@ -2,7 +2,23 @@
 
 define :htmlModule [
 
-    element: method [tag :string content :block :string][
+    element: method [tag :string :literal content :block :string][
+        ;; Elements refers to the normal elements defined by the HTML5 standard.
+        ;;
+        ;; Format
+        ;; ------
+        ;; * They follows the pattern: ``<tag key="value" .../>content<tag />``.
+        ;; * When ``content`` is a :block, the content will be intended by 2 spaces.
+        ;; 
+        ;; Features
+        ;; --------
+        ;; Use Arturo's attributes to dynamically add html's attributes to it.
+        ;;
+        ;; Extra
+        ;; -----
+        ;; Read more about elements here: 
+        ;; <https://html.spec.whatwg.org/multipage/syntax.html#elements-2/>
+
         attributes: (join.with: " " map attrs [key value] -> render {|key|="|value|"})
         if attributes <> "" -> prepend 'attributes " "
 
