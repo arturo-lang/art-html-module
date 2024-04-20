@@ -60,7 +60,12 @@ define :htmlModule [
         ;; Read more about void elements here: 
         ;; <https://html.spec.whatwg.org/multipage/syntax.html#void-elements/>
         
-        attributes: (join.with: " " map attrs [key value] -> render {|key|="|value|"})
+        attributes: (
+            map htmlAttributes [key value] -> render {|key|="|value|"} 
+                | append (map attrs [key value] -> render {|key|="|value|"})
+                | join.with: " " 
+        )
+
         if attributes <> "" -> prepend 'attributes " "
         ~"<|tag||attributes|/>" 
     ]
