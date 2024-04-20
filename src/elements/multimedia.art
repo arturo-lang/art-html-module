@@ -1,0 +1,12 @@
+;; Multimedia
+;; ==========
+;;
+;; Images, videos, audios...
+;; For Html.art, those are injected into ``body``.
+
+area: $[][]
+audio: $[][]
+image: $[][]
+imageMap: $[][]
+track: $[][]
+video: $[][]

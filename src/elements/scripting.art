@@ -1,0 +1,8 @@
+;; Scripting
+;; =========
+;;
+;; Ways to make your website more dynamic.
+
+canvas: $[][]
+noScript: $[][]
+script: $[][]

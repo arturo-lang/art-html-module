@@ -1,0 +1,9 @@
+;; Interactives
+;; ============
+;;
+;; Some interactives elements.
+;; For Html.art, those are injected into ``body``.
+
+details: $[][]
+dialog: $[][]
+summary: $[][]

@@ -1,0 +1,8 @@
+;; Editing
+;; =======
+;;
+;; Indicates edition on the document.
+;; For Html.art, those are injected into ``html``.
+
+delete: $[][]
+insert: $[][]

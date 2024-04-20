@@ -1,0 +1,22 @@
+;; Content Sectioning
+;; ==================
+;;
+;; Organizes the document into semantic sections.
+;; For Html.art, those are injected into ``body``.
+
+addr: $[][]
+article: $[][]
+aside: $[][]
+footer: $[][]
+header: $[][]
+h1: $[][]
+h2: $[][]
+h3: $[][]
+h4: $[][]
+h5: $[][]
+h6: $[][]
+headGroup: $[][]
+main: $[][]
+nav: $[][]
+section: $[][]
+search: $[][]

@@ -1,0 +1,7 @@
+;; Tables
+;; ======
+;;
+;; Include data into table format.
+;; For Html.art, those are injected into ``body``.
+
+;; TODO: Discuss the implementation

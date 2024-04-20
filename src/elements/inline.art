@@ -1,0 +1,38 @@
+;; Inline Text
+;; ===========
+;;
+;; Defines the semantics and style of a text content.
+;; For Html.art, those are injected into ``body``.
+
+link: $[][]
+abbreviation: $[][]
+bold: $[][]
+biDirectional: $[][]
+overrideDirection: $[][]
+breakLine: $[][]
+cite: $[][]
+code: $[][]
+data: $[][]
+definition: $[][]
+emphasis: $[][]
+idiomatic: $[][]
+keyboard: $[][]
+mark: $[][]
+quote: $[][]
+strikethrough: $[][]
+sample: $[][]
+small: $[][]
+span: $[][]
+strong: $[][]
+sub: $[][]
+sup: $[][]
+time: $[][]
+underline: $[][]
+variable: $[][]
+wordBreak: $[][] 
+
+
+; TODO: decide how to work:
+; * rt
+; * ruby
+; * rp

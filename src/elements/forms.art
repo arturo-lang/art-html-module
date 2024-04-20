@@ -1,0 +1,19 @@
+;; Forms
+;; =====
+;;
+;; Related to forms submition.
+;; For Html.art, those are injected into ``body``.
+
+button: $[][]
+dataList: $[][]
+fieldSet: $[][]
+form: $[][]
+input: $[][]
+label: $[][]
+legend: $[][]
+meter: $[][]
+group: $[][] ; Must be inside ``select``
+output: $[][]
+progress: $[][]
+select: $[][]
+textArea: $[][]

@@ -1,0 +1,14 @@
+;; Metadata Content
+;; ================
+;;
+;; Contains information of the website.
+;; For Html.art, those are injected into ``head``.
+
+;; head $[][]
+
+base: $[][]
+metaLink: $[][]
+meta: $[][]
+style: $[][]
+title: $[][]
+

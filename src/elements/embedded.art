@@ -1,0 +1,13 @@
+;; Embedded Content
+;; ================
+;;
+;; For Html.art, those are injected into ``body``.
+
+embed: $[][]
+iFrame: $[][]
+object: $[][]
+picture: $[][]
+portal: $[][]
+source: $[][]
+svg: $[][]
+math: $[][]

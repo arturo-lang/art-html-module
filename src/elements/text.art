@@ -1,0 +1,24 @@
+;; Text Content
+;; ============
+;;
+;; Defines the structure of the document.
+;; For Html.art, those are injected into ``body``.
+
+blockquote: $[][]
+definition: $[][]
+divisory: $[][]
+figureCaption: $[][]
+figure: $[][]
+horizontalRule: $[][]
+menu: $[][]
+paragraph: $[][]
+preformatted: $[][]
+
+; TODO: Decice the working of:
+; 
+; * dd
+; * dl
+; * dt
+; * ol
+; * ul
+; * li

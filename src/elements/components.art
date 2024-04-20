@@ -1,0 +1,8 @@
+;; Web Components
+;; ==============
+;;
+;; A way to create custom components.
+;; For Html.art, those are injected into ``body``.
+
+slot: $[][]
+template: $[][]
