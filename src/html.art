@@ -2,6 +2,11 @@
 
 define :htmlModule [
 
+    init: method [][
+        elements: #./"elements.art"
+        loop elements ['el 'action] -> this\[el]: var get info.get 'action 'name
+    ]
+
     ; newElement: method [tag :string :literal][
     ;     method [content :block][
     ;         this\element] ++ (@[tag]) ++ [content
