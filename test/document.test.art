@@ -1,0 +1,55 @@
+import {unitt}!
+import {src/html.art}!
+
+test "html returns html element with DOCTYPE, and its default value is HTML5" [
+    expect: {!html
+        <!DOCTYPE html>
+        <html>
+          <head>
+            <title>Example</title>
+          </head>
+          <body>
+            <p>Hello</p>
+          </body>
+        </html>
+    }
+
+    result: artml\html [
+        artml\head [
+            artml\title "Example"
+        ]
+        artml\body [
+            artml\paragraph "Hello"
+        ]
+    ]
+
+    assert -> equal? expect result
+
+]
+
+test "HTML4 attribute uses the right DOCTYPE" [
+    expect: {!html
+        <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+        <html>
+          <head>
+            <title>Example</title>
+          </head>
+          <body>
+            <p>Hello</p>
+          </body>
+        </html>
+    }
+
+    result: artml\html.html4 [
+        artml\head [
+            artml\title "Example"
+        ]
+        artml\body [
+            artml\paragraph "Hello"
+        ]
+    ]
+
+    assert -> expect = result
+
+]
+
