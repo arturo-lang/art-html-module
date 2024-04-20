@@ -2,6 +2,12 @@
 
 define :htmlModule [
 
+    ; newElement: method [tag :string :literal][
+    ;     method [content :block][
+    ;         this\element] ++ (@[tag]) ++ [content
+    ;     ]
+    ; ]
+
     element: method [tag :string :literal content :block :string][
         ;; Elements refers to the normal elements defined by the HTML5 standard.
         ;;
