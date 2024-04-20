@@ -44,7 +44,7 @@ define :htmlModule [
             ~"<|tag||attributes|>|content|</|tag|>"
     ]
     
-    voidElement: method [tag :string :literal][
+    voidElement: method [tag :string :literal htmlAttributes :dictionary][
         ;; Void elements are elements without closing-tags.
         ;;
         ;; Format
