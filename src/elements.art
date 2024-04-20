@@ -23,12 +23,13 @@ body: method [content :block][
     this\element 'body content
 ]
 
-head: method [content :block][
-    this\element 'head content
-]
-
 title: method [title :string][
     this\element 'title title
+]
+
+head: method [content :block][
+    title: $[x][this\title x]
+    this\element 'head content
 ]
 
 
