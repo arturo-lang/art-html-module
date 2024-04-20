@@ -7,11 +7,29 @@ define :htmlModule [
         loop elements ['el 'action] -> this\[el]: var get info.get 'action 'name
     ]
 
-    ; newElement: method [tag :string :literal][
-    ;     method [content :block][
-    ;         this\element] ++ (@[tag]) ++ [content
-    ;     ]
-    ; ]
+    newElement: method [tag :string :literal kind :type][
+
+        head: [content]
+        body: [this\element] ++ (@[tag]) ++ [content]
+
+        if in? kind [:group :section] -> 
+            append 'head :block
+
+        if in? kind [:text :inline] -> 
+            append 'head :string
+        
+        if in? kind [:any] -> 
+            append 'head [:block :string]
+
+        if in? kind [:void] [
+            append 'head :dictionary
+            drop 'body
+            prepend 'body [this\voidElement]
+        ]
+
+        method head body
+        
+    ]
 
     element: method [tag :string :literal content :block :string][
         ;; Elements refers to the normal elements defined by the HTML5 standard.
