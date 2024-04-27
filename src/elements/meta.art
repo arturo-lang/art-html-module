@@ -31,6 +31,11 @@ metaLink: $[category :string :type :literal url :string][
     voidElement 'link attributes
 ]
 
+meta: $[attributes :dictionary][
+    if empty? attributes -> throw "<meta> needs attributes."
+    voidElement 'meta attributes
+]
+
 style: $[][]
 title: $[][]
 
