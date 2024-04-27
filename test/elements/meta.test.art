@@ -125,7 +125,7 @@ suite "<meta/>" [
 suite "<style/>" [
 
 
-    test.skip "<style/> is a normal element and follows the standard" [
+    test "<style/> is a normal element and follows the standard" [
         expect: {!html
             <style media="max-width: 720px">
               p {
@@ -134,11 +134,13 @@ suite "<style/>" [
             </style>
         }
 
-        result: artml\style {!css
-            p {
-                color: black;
+        result: fragment [
+            style.media: "max-width: 720px" {!css
+                p {
+                    color: black;
+                }
             }
-        }
+        ]
 
         assert -> expect = result
 
