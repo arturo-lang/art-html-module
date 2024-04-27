@@ -29,11 +29,6 @@ suite "<base/>" [
 
 
 suite "<link/>" [
-    test.skip "<link/> gets two arguments 'rel and 'href" [
-        assert -> not? throws? [artml\metaLink "stylesheet" "style.css"]
-        assert -> throws? [artml\metaLink "stylesheet"]
-        assert -> throws? [artml\metaLink]
-    ]
 
     test.skip "<link/> takes :string-like arguments" [
         assert -> not? throws? [artml\metaLink "stylesheet" "style.css"]
