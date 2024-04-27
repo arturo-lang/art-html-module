@@ -37,7 +37,7 @@ meta: $[attributes :dictionary][
 ]
 
 style: $[css :string][
-    element 'style css
+    element 'style join @["\n" indent.n: 2 css "\n"]
 ]
 
 title: $[content :string][
