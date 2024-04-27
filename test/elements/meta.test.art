@@ -150,12 +150,12 @@ suite "<style/>" [
 
 suite "<title/>" [
 
-    test.skip "<title/> is a normal element and follows the standard" [
+    test "<title/> is a normal element and follows the standard" [
         expect: {!html
             <title>Arturo Language!</title>
         }
 
-        result: artml\title "Arturo Language!"
+        result: fragment [title "Arturo Language!"]
         assert -> expect = result
 
     ]
