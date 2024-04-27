@@ -68,21 +68,23 @@ suite "<link/>" [
         assert -> expect = result
     ]
 
-    test.skip "<link/> is a void element and follows the standard" [
+    test "<link/> is a void element and follows the standard" [
         expect: {!html
             <head>
               <title></title>
-              <link rel="icon" href="icon.ico" />
-              <link rel="stylesheet" href="style.css" />
-              <link rel="apple-touch-icon" href="icon.png" size="70x70" />
+              <link rel="icon" href="icon.ico"/>
+              <link rel="stylesheet" href="style.css"/>
+              <link rel="apple-touch-icon" href="icon.png" size="70x70"/>
             </head>
         }
 
-        result: artml\head [
-            title ""
-            link :icon "icon.ico"
-            link :stylesheet "style.css"
-            link.size: 70 "apple-touch-icon" "icon.png"
+        result: fragment [
+            head [
+                title ""
+                link :icon "icon.ico"
+                link :stylesheet "style.css"
+                link.size: 70 "apple-touch-icon" "icon.png"
+            ]
         ]
 
         assert -> expect = result
