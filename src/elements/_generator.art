@@ -76,6 +76,6 @@ newElement: $[tag :string :literal kind :type][
         prepend 'body [voidElement]
     ]
 
-    method head body
+    function head body
     
 ]
