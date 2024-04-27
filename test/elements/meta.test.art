@@ -4,7 +4,7 @@ import {src/html.art}!
 suite "<base/>" [
     test.skip "<base/> must have 'href, 'target or both" [
         ; None
-        assert -> not? throws? [
+        assert -> throws? [
             artml\base #[]
         ]
         
@@ -29,7 +29,7 @@ suite "<base/>" [
             <base href="https://example.com" target="_blank"/>
         }
 
-        result: base #[href: "https://example.com" target: "_blank"]
+        result: artml\base #[href: "https://example.com" target: "_blank"]
         assert -> expect = result
     ]
 ]
