@@ -17,7 +17,7 @@ suite "<base/>" [
 
     ]
 
-    test.skip "<base/> must be void and follow the standard" [
+    test "<base/> must be void and follow the standard" [
         expect: {!html
             <base href="https://example.com" target="_blank"/>
         }
