@@ -4,20 +4,24 @@ import {src/html.art}!
 suite "<base/>" [
     test.skip "<base/> must have 'href, 'target or both" [
         ; None
-        result: artml\base #[]
-        assert -> throws? [result]
+        assert -> not? throws? [
+            artml\base #[]
+        ]
         
         ; With href
-        result: artml\base #[href: "https://example.com"]
-        assert -> not? throws? [result]
+        assert -> not? throws? [
+            artml\base #[href: "https://example.com"]
+        ]
         
         ; With target
-        result: artml\base #[target: "_blank"]
-        assert -> not? throws? [result]
+        assert -> not? throws? [
+            artml\base #[target: "_blank"]
+        ]
         
         ; With both
-        result: artml\base #[href: "https://example.com" target: "_blank"]
-        assert -> not? throws? [result]
+        assert -> not? throws? [
+            artml\base #[href: "https://example.com" target: "_blank"]
+        ]
     ]
 
     test.skip "<base/> must be void and follow the standard" [
