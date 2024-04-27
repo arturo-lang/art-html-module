@@ -13,13 +13,13 @@ test "Headings are working as expected" [
         </div>
     }
 
-    result: artml\divisory [
-        artml\h1 "Text"
-        artml\h2 "Text"
-        artml\h3 "Text"
-        artml\h4 "Text"
-        artml\h5 "Text"
-        artml\h6 "Text"
+    result: divisory [
+        h1 "Text"
+        h2 "Text"
+        h3 "Text"
+        h4 "Text"
+        h5 "Text"
+        h6 "Text"
     ]
 
     assert -> expect = result

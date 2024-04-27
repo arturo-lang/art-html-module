@@ -4,7 +4,7 @@ import {src/html}!
 
 test.skip "new element of kind :group/:section only accepts :blocks" [
     loop [:group :section] 'kind [
-        head: artml\newElement 'head kind
+        head: newElement 'head kind
 
         assert -> not? throws? [head ["Hello"]]
         assert -> throws? [head "Hello"]
@@ -16,7 +16,7 @@ test.skip "new element of kind :group/:section only accepts :blocks" [
 
 test.skip "new element of kind :text/:inline only accepts :string-based types" [
     loop [:text :inline] 'kind [
-        bold: artml\newElement 'b kind
+        bold: newElement 'b kind
 
         assert -> not? throws? [head "Hello"]
         assert -> not? throws? [head 'hello]
@@ -27,7 +27,7 @@ test.skip "new element of kind :text/:inline only accepts :string-based types" [
 ]
 
 test.skip "new element of kind :any accepts :any" [
-    entry: artml\newElement 'input :any
+    entry: newElement 'input :any
 
     assert -> not? throws? [head 'hello]
     assert -> not? throws? [head "Hello"]
@@ -37,7 +37,7 @@ test.skip "new element of kind :any accepts :any" [
 ]
 
 test.skip "new element of kind :void accepts :dictionary" [
-    entry: artml\newElement 'input :void
+    entry: newElement 'input :void
 
     assert -> not? throws? [head #[hello: "World"]]
     assert -> throws? [head 'hello]

@@ -14,12 +14,12 @@ test "html returns html element with DOCTYPE, and its default value is HTML5" [
         </html>
     }
 
-    result: artml\html [
-        artml\head [
-            artml\title "Example"
+    result: html [
+        head [
+            title "Example"
         ]
-        artml\body [
-            artml\paragraph "Hello"
+        body [
+            paragraph "Hello"
         ]
     ]
 
@@ -40,12 +40,12 @@ test "HTML4 attribute uses the right DOCTYPE" [
         </html>
     }
 
-    result: artml\html.html4 [
-        artml\head [
-            artml\title "Example"
+    result: html.html4 [
+        head [
+            title "Example"
         ]
-        artml\body [
-            artml\paragraph "Hello"
+        body [
+            paragraph "Hello"
         ]
     ]
 
