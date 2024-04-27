@@ -3,7 +3,7 @@ import {src/html}!
 
 
 test.skip "new element of kind :group/:section only accepts :blocks" [
-    loop [:group :section] kind [
+    loop [:group :section] 'kind [
         head: artml\newElement 'head kind
 
         assert -> not? throws? [head ["Hello"]]
@@ -15,7 +15,7 @@ test.skip "new element of kind :group/:section only accepts :blocks" [
 ]
 
 test.skip "new element of kind :text/:inline only accepts :string-based types" [
-    loop [:text :inline] kind [
+    loop [:text :inline] 'kind [
         bold: artml\newElement 'b kind
 
         assert -> not? throws? [head "Hello"]
