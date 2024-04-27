@@ -3,7 +3,7 @@
 define :htmlModule [
 
     init: method [][
-        elements: #./"elements.art"
+        elements: #./"root.art"
         loop elements ['el 'action] -> this\[el]: var get info.get 'action 'name
     ]
 

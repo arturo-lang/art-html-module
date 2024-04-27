@@ -1,11 +1,25 @@
 
 
-html: $[][
+html: $[page :block][
+    html4: attr 'html4
 
+    doctype: (html4)?
+        -> {!html
+            <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+        }
+        -> {!html
+            <!DOCTYPE html>
+        }
+
+    join.with: "\n" @[
+        doctype
+        this\element 'html page
+    ]  
 ]
 
-head: $[][
-
+head: method [content :block][
+    title: $[x][this\title x]
+    this\element 'head content
 ]
 
 body: $[][

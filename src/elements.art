@@ -2,34 +2,12 @@
 ; Document Level
 ; ==============
 
-html: method [page :block][
-    html4: attr 'html4
-
-    doctype: (html4)?
-        -> {!html
-            <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-        }
-        -> {!html
-            <!DOCTYPE html>
-        }
-
-    join.with: "\n" @[
-        doctype
-        this\element 'html page
-    ]  
-]
-
 body: method [content :block][
     this\element 'body content
 ]
 
 title: method [title :string][
     this\element 'title title
-]
-
-head: method [content :block][
-    title: $[x][this\title x]
-    this\element 'head content
 ]
 
 
