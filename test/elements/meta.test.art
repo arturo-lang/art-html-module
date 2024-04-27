@@ -93,21 +93,23 @@ suite "<link/>" [
 ]
 
 suite "<meta/>" [
-    test.skip "<meta/> is a void element and gets a :dictionary" [
+    test "<meta/> is a void element and gets a :dictionary" [
         expect: {!html
             <head>
               <title></title>
-              <meta charset="utf-8" />
-              <meta http-equiv="content-security-policy" content="..." />
-              <meta name="twitter:card" content="summary" />
-            <head/>
+              <meta charset="utf-8"/>
+              <meta http-equiv="content-security-policy" content="..."/>
+              <meta name="twitter:card" content="summary"/>
+            </head>
         }
 
-        result: artml\html [
-            title ""
-            meta #[charset: "utf-8"]
-            meta #["http-equiv": "content-security-policy" content: "..."]
-            meta #[name: "twitter?card" content: "summary"]
+        result: fragment [
+            head [
+                title ""
+                meta #[charset: "utf-8"]
+                meta #["http-equiv": "content-security-policy" content: "..."]
+                meta #[name: "twitter:card" content: "summary"]
+            ]
         ]
 
         assert -> expect = result
