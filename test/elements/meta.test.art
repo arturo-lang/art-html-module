@@ -124,10 +124,6 @@ suite "<meta/>" [
 
 suite "<style/>" [
 
-    test.skip "<style/> only gets a :string" [
-        assert -> not? throws? [artml\style ""]
-        assert -> throws? [artml\style [""]]
-    ]
 
     test.skip "<style/> is a normal element and follows the standard" [
         expect: {!html
