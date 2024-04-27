@@ -1,6 +1,17 @@
+import ./{elements/_generator}!
 
+head: $[content :block][
+    import ./{elements/meta}
 
-html: method [page :block][
+    link: var 'metaLink
+    element 'head content
+]
+
+body: $[][
+
+]
+
+html: $[page :block][
     html4: attr 'html4
 
     doctype: (html4)?
@@ -11,20 +22,8 @@ html: method [page :block][
             <!DOCTYPE html>
         }
 
-    head: $[x][this\head x]
-    body: $[x][this\body x]
-
     join.with: "\n" @[
         doctype
-        this\element 'html page
+        element 'html page
     ]  
-]
-
-head: method [content :block][
-    title: $[x][this\title x]
-    this\element 'head content
-]
-
-body: method [][
-
 ]
