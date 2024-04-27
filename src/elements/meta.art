@@ -36,7 +36,10 @@ meta: $[attributes :dictionary][
     voidElement 'meta attributes
 ]
 
-style: $[][]
+style: $[css :string][
+    element 'style css
+]
+
 title: $[content :string][
     element 'title content
 ]
