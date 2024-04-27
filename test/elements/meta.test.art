@@ -93,6 +93,12 @@ suite "<link/>" [
 ]
 
 suite "<meta/>" [
+
+    test "<meta/> must have attributes" [
+        assert -> not? throws? [_: fragment [meta #[charset: "utf-8"]]]
+        assert -> throws? [_: fragment [meta #[]]]
+    ]
+
     test "<meta/> is a void element and gets a :dictionary" [
         expect: {!html
             <head>
