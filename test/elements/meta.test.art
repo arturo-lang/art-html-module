@@ -49,9 +49,9 @@ suite "<link/>" [
         assert -> expect = result
     ]
 
-    test.skip "<link/>'s .size does not influences other attributes" [
+    test "<link/>'s .size does not influences other attributes" [
         expect: {!html
-            <link rel="apple-touch-icon" href="icon.png" size="70x70" type="image/png" />
+            <link rel="apple-touch-icon" href="icon.png" size="70x70" type="image/png"/>
         }
 
         result: artml\metaLink.size: 70 .type: "image/png" 
