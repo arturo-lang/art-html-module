@@ -11,6 +11,9 @@ html: method [page :block][
             <!DOCTYPE html>
         }
 
+    head: $[x][this\head x]
+    body: $[x][this\body x]
+
     join.with: "\n" @[
         doctype
         this\element 'html page
