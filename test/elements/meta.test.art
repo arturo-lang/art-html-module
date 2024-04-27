@@ -40,9 +40,9 @@ suite "<link/>" [
         assert -> throws? [_: artml\metaLink ['stylesheet] ["style.css"]]
     ]
 
-    test.skip "<link/> .size gets an :integer and converts to standard" [
+    test "<link/> .size gets an :integer and converts to standard" [
         expect: {!html
-            <link rel="apple-touch-icon" size="70x70" href="icon.png" />
+            <link rel="apple-touch-icon" href="icon.png" size="70x70"/>
         }
 
         result: artml\metaLink.size: 70 "apple-touch-icon" "icon.png"
