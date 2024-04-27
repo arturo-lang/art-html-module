@@ -1,0 +1,17 @@
+head: $[content :block][
+
+    ; Making all meta elements available to this scope 
+    import ./{meta}!
+
+    ; The <a/> element is called 'link on this library for semantic reasons,
+    ; but there is no reason to have it on the <head/>, 
+    ; so the metaLink is aliased here as the original tag: <link>.
+    ; Although, both forms are available to the final user.
+    link: var 'metaLink
+
+    element 'head content
+]
+
+body: $[][
+
+]

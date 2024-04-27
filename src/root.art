@@ -1,16 +1,5 @@
 import ./{elements/_generator}!
 
-head: $[content :block][
-    import ./{elements/meta}
-
-    link: var 'metaLink
-    element 'head content
-]
-
-body: $[][
-
-]
-
 html: $[page :block][
     html4: attr 'html4
 
@@ -21,6 +10,8 @@ html: $[page :block][
         -> {!html
             <!DOCTYPE html>
         }
+
+    import ./{elements/main}!
 
     join.with: "\n" @[
         doctype

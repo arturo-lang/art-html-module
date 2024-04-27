@@ -3,7 +3,8 @@ import ./{root.art}!
 
 
 fragment: $[content :block][
-    import ./{elements/meta.art}
+    import ./{elements/main}!
+    import ./{elements/meta}!
 
     first @content
 ]
