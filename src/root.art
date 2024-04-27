@@ -1,6 +1,6 @@
 
 
-html: $[page :block][
+html: method [page :block][
     html4: attr 'html4
 
     doctype: (html4)?
@@ -22,6 +22,6 @@ head: method [content :block][
     this\element 'head content
 ]
 
-body: $[][
+body: method [][
 
 ]
