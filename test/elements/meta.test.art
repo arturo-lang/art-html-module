@@ -43,9 +43,9 @@ suite "<link/>" [
         assert -> not? throws? [artml\metaLink :stylesheet "style.css"]
         assert -> not? throws? [artml\metaLink 'stylesheet "style.css"]
 
-        assert -> not? throws? [artml\metaLink ["stylesheet"] "style.css"]
-        assert -> not? throws? [artml\metaLink :stylesheet ["style.css"]]
-        assert -> not? throws? [artml\metaLink ['stylesheet] ["style.css"]]
+        assert -> throws? [artml\metaLink ["stylesheet"] "style.css"]
+        assert -> throws? [artml\metaLink :stylesheet ["style.css"]]
+        assert -> throws? [artml\metaLink ['stylesheet] ["style.css"]]
     ]
 
     test.skip "<link/> .size gets an :integer and converts to standard" [
