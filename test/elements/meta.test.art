@@ -2,26 +2,19 @@ import {unitt}!
 import {src/html.art}!
 
 suite "<base/>" [
-    test.skip "<base/> must have 'href, 'target or both" [
-        ; None
-        assert -> throws? [
-            artml\base #[]
+
+    test "<base/> must have 'href, 'target or both" [
+
+        withHref: #[href: "https://example.com"]
+        withTarget: #[target: "_blank"]
+        withBoth: extend withHref withTarget
+
+        assert -> throws? [artml\base #[]]
+
+        loop @[withHref withTarget withBoth] 'dict [
+            assert -> not? throws? [_: artml\base] ++ dict
         ]
-        
-        ; With href
-        assert -> not? throws? [
-            artml\base #[href: "https://example.com"]
-        ]
-        
-        ; With target
-        assert -> not? throws? [
-            artml\base #[target: "_blank"]
-        ]
-        
-        ; With both
-        assert -> not? throws? [
-            artml\base #[href: "https://example.com" target: "_blank"]
-        ]
+
     ]
 
     test.skip "<base/> must be void and follow the standard" [
