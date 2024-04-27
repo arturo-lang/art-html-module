@@ -6,9 +6,16 @@
 
 ;; head $[][]
 
-base: $[][]
-metaLink: $[][]
-meta: $[][]
+import ./{_generator}!
+
+base: $[attributes :dictionary][
+    attrKeys: keys attributes
+    unless (any? @[in? "href" attrKeys, in? "target" attrKeys]) [ 
+        throw "<base/> needs 'href, 'target or both attributes."
+    ]
+
+    voidElement 'base attributes
+]
 style: $[][]
 title: $[][]
 
