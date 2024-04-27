@@ -30,14 +30,14 @@ suite "<base/>" [
 
 suite "<link/>" [
 
-    test.skip "<link/> takes :string-like arguments" [
-        assert -> not? throws? [artml\metaLink "stylesheet" "style.css"]
-        assert -> not? throws? [artml\metaLink :stylesheet "style.css"]
-        assert -> not? throws? [artml\metaLink 'stylesheet "style.css"]
+    test "<link/> takes :string-like arguments" [
+        assert -> not? throws? [_: artml\metaLink "stylesheet" "style.css"]
+        assert -> not? throws? [_: artml\metaLink :stylesheet "style.css"]
+        assert -> not? throws? [_: artml\metaLink 'stylesheet "style.css"]
 
-        assert -> throws? [artml\metaLink ["stylesheet"] "style.css"]
-        assert -> throws? [artml\metaLink :stylesheet ["style.css"]]
-        assert -> throws? [artml\metaLink ['stylesheet] ["style.css"]]
+        assert -> throws? [_: artml\metaLink ["stylesheet"] "style.css"]
+        assert -> throws? [_: artml\metaLink :stylesheet ["style.css"]]
+        assert -> throws? [_: artml\metaLink ['stylesheet] ["style.css"]]
     ]
 
     test.skip "<link/> .size gets an :integer and converts to standard" [
