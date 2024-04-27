@@ -1,18 +1,20 @@
 import {unitt}!
-import {src/html.art}!
+
+import.lean {src/html.art}!
 
 suite "<base/>" [
 
     test "<base/> must have 'href, 'target or both" [
+        base: $[x][fragment [base x]]
 
         withHref: #[href: "https://example.com"]
         withTarget: #[target: "_blank"]
         withBoth: extend withHref withTarget
 
-        assert -> throws? [artml\base #[]]
+        assert -> throws? [_: base #[]]
 
         loop @[withHref withTarget withBoth] 'dict [
-            assert -> not? throws? [_: artml\base] ++ dict
+            assert -> not? throws? [_: fragment -> base] ++ dict
         ]
 
     ]
@@ -22,7 +24,7 @@ suite "<base/>" [
             <base href="https://example.com" target="_blank"/>
         }
 
-        result: artml\base #[href: "https://example.com" target: "_blank"]
+        result: fragment [base #[href: "https://example.com" target: "_blank"]]
         assert -> expect = result
     ]
 ]
@@ -31,13 +33,15 @@ suite "<base/>" [
 suite "<link/>" [
 
     test "<link/> takes :string-like arguments" [
-        assert -> not? throws? [_: artml\metaLink "stylesheet" "style.css"]
-        assert -> not? throws? [_: artml\metaLink :stylesheet "style.css"]
-        assert -> not? throws? [_: artml\metaLink 'stylesheet "style.css"]
+        link: $[x y][fragment [metaLink x y]]
 
-        assert -> throws? [_: artml\metaLink ["stylesheet"] "style.css"]
-        assert -> throws? [_: artml\metaLink :stylesheet ["style.css"]]
-        assert -> throws? [_: artml\metaLink ['stylesheet] ["style.css"]]
+        assert -> not? throws? [_: link "stylesheet" "style.css"]
+        assert -> not? throws? [_: link :stylesheet "style.css"]
+        assert -> not? throws? [_: link 'stylesheet "style.css"]
+
+        assert -> throws? [_: link ["stylesheet"] "style.css"]
+        assert -> throws? [_: link :stylesheet ["style.css"]]
+        assert -> throws? [_: link ['stylesheet] ["style.css"]]
     ]
 
     test "<link/> .size gets an :integer and converts to standard" [
@@ -45,7 +49,10 @@ suite "<link/>" [
             <link rel="apple-touch-icon" href="icon.png" size="70x70"/>
         }
 
-        result: artml\metaLink.size: 70 "apple-touch-icon" "icon.png"
+        result: fragment [
+            metaLink.size: 70 "apple-touch-icon" "icon.png"
+        ]
+
         assert -> expect = result
     ]
 
@@ -54,8 +61,10 @@ suite "<link/>" [
             <link rel="apple-touch-icon" href="icon.png" size="70x70" type="image/png"/>
         }
 
-        result: artml\metaLink.size: 70 .type: "image/png" 
-            "apple-touch-icon" "icon.png"
+        result: fragment [
+            metaLink.size: 70 .type: "image/png" "apple-touch-icon" "icon.png"
+        ]
+
         assert -> expect = result
     ]
 
