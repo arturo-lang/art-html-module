@@ -37,5 +37,7 @@ meta: $[attributes :dictionary][
 ]
 
 style: $[][]
-title: $[][]
+title: $[content :string][
+    element 'title content
+]
 
