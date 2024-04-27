@@ -16,6 +16,21 @@ base: $[attributes :dictionary][
 
     voidElement 'base attributes
 ]
+
+metaLink: $[category :string :type :literal url :string][
+    if contains? [:type :literal] type category [
+        category: drop ~"|category|"
+    ]
+
+    attributes: #[rel: category href: url]
+    
+    if integer? size: <= attr 'size [
+        attributes\size: ~"|size|x|size|"  
+    ]
+
+    voidElement 'link attributes
+]
+
 style: $[][]
 title: $[][]
 
