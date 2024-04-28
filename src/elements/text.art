@@ -4,21 +4,173 @@
 ;; Defines the structure of the document.
 ;; For Html.art, those are injected into ``body``.
 
-blockquote: $[][]
-definition: $[][]
-divisory: $[][]
-figureCaption: $[][]
-figure: $[][]
-horizontalRule: $[][]
-menu: $[][]
-paragraph: $[][]
-preformatted: $[][]
+import ./{_generator}!
 
-; TODO: Decice the working of:
-; 
-; * dd
-; * dl
-; * dt
-; * ol
-; * ul
-; * li
+definitions: $[list :block :dictionary][
+    ;; <dl> (Definitoin list) in HTML
+    ;;
+    ;; There are a lot of ways call this function:
+    ;; 1. You can use the internal function names
+    ;;   * What helps to use custom attributes, or to explict things
+    ;; 2. You can use the ``pair``  or ``<`` sugar syntax
+    ;;   * Attributes are applied only for the term, not the definition
+    ;; 3. You can use a ``:dictionary`` as parameter.
+    ;; 
+    ;; Internal functions
+    ;; ------------------
+    ;; * term: $[item :string]
+    ;; * detail: $[definition :string]
+    ;; * pair: $[item :string definition :string]
+    ;;   * infixed: ``<``
+    ;;
+    ;; Usage
+    ;; -----
+    ;;      definitions #[
+    ;;          "Arturo Language": "arturo-lang.io"
+    ;;          "Ruby Language": "ruby-lang.org"
+    ;;      ]
+    ;;      ; <dl>
+    ;;      ;   <dt>Arturo Language</dt>
+    ;;      ;   <dd>arturo-lang.io</dd>
+    ;;      ;   <dt>Ruby Language</dt>
+    ;;      ;   <dd>ruby-lang.org</dd>
+    ;;      ; </dl>
+    ;;      .....................................................
+    ;;      definitions [
+    ;;          pair.class: "favorite" "Arturo" "arturo-lang.io"
+    ;;          "Python" < "python.org"
+    ;;          "Ruby" < "ruby-lang.org"
+    ;;      ]
+    ;;      ; <dl>
+    ;;      ;   <dt class="favorite">Arturo</dt>
+    ;;      ;   <dd>arturo-lang.io</dd>
+    ;;      ;   <dt>Python</dt>
+    ;;      ;   <dd>python.org</dd>
+    ;;      ;   <dt>Ruby</dt>
+    ;;      ;   <dd>ruby-lang.org</dd>
+    ;;      ; </dl>
+    ;;      .....................................................
+    ;;      definitions [
+    ;;          term.class: "favorite" "Arturo" 
+    ;;          detail.class: "site" "arturo-lang.io"
+    ;;      ]
+    ;;      ; <dl>
+    ;;      ;   <dt class="favorite">Arturo</dt>
+    ;;      ;   <dd class="site">arturo-lang.io</dd>
+    ;;      ; </dl>
+    ;;      .....................................................
+    ;;      definitions [
+    ;;          term "Arturo" 
+    ;;          term "Python" 
+    ;;          term "RUby" 
+    ;;          detail "Dynamic Languages"
+    ;;      ]
+    ;;      ; <dl>
+    ;;      ;   <dt>Arturo</dt>
+    ;;      ;   <dt>Python</dt>
+    ;;      ;   <dt>Ruby</dt>
+    ;;      ;   <dd>Dynamic Languages</dd>
+    ;;      ; </dl>
+
+    detail: newElement 'dd :text
+
+    pair: $[item :string definition :string][
+        join.with: "\n" @[element 'dt item, detail definition]
+    ]
+    
+    term: $[item :string][
+        (string? definition: <= attr 'definition)? 
+            -> pair item definition
+            -> element 'dt item
+    ]
+
+    alias.infix '< 'pair
+
+    (block? list)?
+        -> element 'dl list
+        -> element 'dl map list => pair
+
+    alias '< 'less?
+
+]
+
+itemList: $[items :block][
+    ;; <ul>, <ol> or <menu> (lists) in HTML
+    ;;
+    ;; This function can represent 3 different HTML elements:
+    ;; * <ul> by default
+    ;; * <ol> using the .ordered attribute
+    ;; * <menu> using the .menu attribute
+    ;;   * Or calling the ``menu`` function
+    ;;
+    ;; Items <li> can be defined using the ``item`` internal function
+    ;; or its aliases, for a better syntax: ``+``, ``-``, ``*``.
+    ;; 
+    ;; Internal function
+    ;; ------------------
+    ;; * item: $[content :string :block]
+    ;;   * Aliases: ``+``, ``-``, ``*``
+    ;;
+    ;; Usage
+    ;; -----
+    ;;      itemList [
+    ;;          - "Arturo Language"
+    ;;          - "Ruby Language"
+    ;;      ]
+    ;;      ; <ul>
+    ;;      ;   <li>Arturo Language</li>
+    ;;      ;   <li>Ruby Language</li>
+    ;;      ; </ul>
+    ;;      .....................................................
+    ;;      itemList.ordered [
+    ;;          item.class: "favorite" "Arturo Language"
+    ;;          item "Ruby Language"
+    ;;      ]
+    ;;      ; <ul>
+    ;;      ;   <li class="favorite">Arturo Language</li>
+    ;;      ;   <li>Ruby Language</li>
+    ;;      ; </ul>
+    ;;      .....................................................
+    ;;      itemList.menu [
+    ;;          * "Home"
+    ;;          * "About"
+    ;;      ]
+    ;;      ; <menu>
+    ;;      ;   <li>Home</li>
+    ;;      ;   <li>About</li>
+    ;;      ; </menu>
+
+    tag: 'ul
+    if logical? (attr 'ordered) -> tag: 'ol 
+    if logical? (attr 'menu) -> tag: 'menu
+
+    call $[][
+        item: newElement 'li :any
+        alias '+ 'item
+        alias '* 'item
+        alias '- 'item
+        element tag items
+    ][]
+
+    alias '+ 'add
+    alias '* 'mul
+    alias '- 'sub
+
+]
+
+; TODO: .caption should call figure and caption for some elements
+; Example: image.caption: "..." "..." 
+;         => <figure>
+;              <img src="...">
+;              <figcaption>...</figcaption>
+;            </figure>
+
+blockquote:    newElement 'blockquote :group
+code:          newElement 'pre        :string
+divisory:      newElement 'div        :any
+figure:        newElement 'figure     :group
+figureCaption: newElement 'figcaption :any
+paragraph:     newElement 'p          :any
+
+horizontalRule: $[][voidElement 'hr #[]]
+menu: $[items :block][itemList.menu items]
