@@ -1,6 +1,24 @@
 import ./{elements/_generator.art}!
-import ./{root.art}!
 
+
+html: $[page :block][
+    html4: attr 'html4
+
+    doctype: (html4)?
+        -> {!html
+            <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+        }
+        -> {!html
+            <!DOCTYPE html>
+        }
+
+    import ./{elements/main}!
+
+    join.with: "\n" @[
+        doctype
+        element 'html page
+    ]  
+]
 
 fragment: $[content :block][
     import ./{elements/main}!
