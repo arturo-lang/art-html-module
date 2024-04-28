@@ -1,5 +1,5 @@
 import {unitt}!
-import {src/html}!
+import {src/elements/_generator}!
 
 
 test.skip "new element of kind :group/:section only accepts :blocks" [
