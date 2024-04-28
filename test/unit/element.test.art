@@ -1,10 +1,9 @@
 import {unitt}!
-import {src/html.art}!
+import {src/elements/_generator}!
 
 test "generic elements follows the standard for :string" [
     result: element "el" "Hello, World!"
-    assert -> "<el>Hello, World!</el>" = 
-        result
+    assert -> "<el>Hello, World!</el>" = result
 ]
 
 
