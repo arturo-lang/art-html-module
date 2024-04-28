@@ -4,19 +4,60 @@
 ;; Organizes the document into semantic sections.
 ;; For Html.art, those are injected into ``body``.
 
-addr: $[][]
-article: $[][]
-aside: $[][]
-footer: $[][]
-header: $[][]
-h1: $[][]
-h2: $[][]
-h3: $[][]
-h4: $[][]
-h5: $[][]
-h6: $[][]
-headGroup: $[][]
-main: $[][]
-nav: $[][]
-section: $[][]
-search: $[][]
+import ./{_generator}!
+
+address: $[content :string :block][
+    call $[] [
+        loop [
+            ; Hides heading elements
+            'h1 'h2 'h3 'h4 'h5 'h6 'headGroup 
+            ; Hides section elements
+            'article 'aside 'section 'nav 'header 'footer
+        ] => unset
+
+        element 'address content
+    ][]
+]
+
+footer:  $[content :block][
+    call $[][
+        ; header must not be descendant of footer
+        unset 'header
+
+        element 'header :section
+    ][]
+]
+
+header: $[content :block][
+    call $[][
+        ; header must not be descendant of header
+        unset 'header
+
+        element 'header :section
+    ][]
+]
+
+search: $[content :block][
+    ; forms.art is always available for <search> 
+    unless set? 'form [
+        import ./{forms}!
+    ]
+
+    element 'search :section
+]
+
+
+article: newElement 'article :section
+aside:   newElement 'aside   :section
+
+h1: newElement 'h1 :inline
+h2: newElement 'h2 :inline
+h3: newElement 'h3 :inline
+h4: newElement 'h4 :inline
+h5: newElement 'h5 :inline
+h6: newElement 'h6 :inline
+
+headGroup: newElement 'hgroup :group
+main: newElement 'main :section
+nav: newElement 'nav :section
+section: newElement 'section :section
