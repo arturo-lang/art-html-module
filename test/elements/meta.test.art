@@ -1,12 +1,10 @@
 import {unitt}!
 
-import.lean {src/html.art}!
+import {src/elements/meta}!
 
 suite "<base/>" [
 
     test "<base/> must have 'href, 'target or both" [
-        base: $[x][fragment [base x]]
-
         withHref: #[href: "https://example.com"]
         withTarget: #[target: "_blank"]
         withBoth: extend withHref withTarget
@@ -14,7 +12,7 @@ suite "<base/>" [
         assert -> throws? [_: base #[]]
 
         loop @[withHref withTarget withBoth] 'dict [
-            assert -> not? throws? [_: fragment -> base] ++ dict
+            assert -> not? throws? [_: base] ++ dict
         ]
 
     ]
@@ -24,7 +22,7 @@ suite "<base/>" [
             <base href="https://example.com" target="_blank"/>
         }
 
-        result: fragment [base #[href: "https://example.com" target: "_blank"]]
+        result: base #[href: "https://example.com" target: "_blank"]
         assert -> expect = result
     ]
 ]
@@ -33,15 +31,14 @@ suite "<base/>" [
 suite "<link/>" [
 
     test "<link/> takes :string-like arguments" [
-        link: $[x y][fragment [metaLink x y]]
 
-        assert -> not? throws? [_: link "stylesheet" "style.css"]
-        assert -> not? throws? [_: link :stylesheet "style.css"]
-        assert -> not? throws? [_: link 'stylesheet "style.css"]
+        assert -> not? throws? [_: metaLink "stylesheet" "style.css"]
+        assert -> not? throws? [_: metaLink :stylesheet "style.css"]
+        assert -> not? throws? [_: metaLink 'stylesheet "style.css"]
 
-        assert -> throws? [_: link ["stylesheet"] "style.css"]
-        assert -> throws? [_: link :stylesheet ["style.css"]]
-        assert -> throws? [_: link ['stylesheet] ["style.css"]]
+        assert -> throws? [_: metaLink ["stylesheet"] "style.css"]
+        assert -> throws? [_: metaLink :stylesheet ["style.css"]]
+        assert -> throws? [_: metaLink ['stylesheet] ["style.css"]]
     ]
 
     test "<link/> .size gets an :integer and converts to standard" [
@@ -49,9 +46,7 @@ suite "<link/>" [
             <link rel="apple-touch-icon" href="icon.png" size="70x70"/>
         }
 
-        result: fragment [
-            metaLink.size: 70 "apple-touch-icon" "icon.png"
-        ]
+        result: metaLink.size: 70 "apple-touch-icon" "icon.png"
 
         assert -> expect = result
     ]
@@ -61,14 +56,16 @@ suite "<link/>" [
             <link rel="apple-touch-icon" href="icon.png" size="70x70" type="image/png"/>
         }
 
-        result: fragment [
-            metaLink.size: 70 .type: "image/png" "apple-touch-icon" "icon.png"
-        ]
+        result: metaLink
+            .size: 70 
+            .type: "image/png" 
+            "apple-touch-icon" "icon.png"
 
         assert -> expect = result
     ]
 
     test "<link/> is a void element and follows the standard" [
+
         expect: {!html
             <head>
               <title></title>
@@ -78,13 +75,13 @@ suite "<link/>" [
             </head>
         }
 
-        result: fragment [
-            head [
-                title ""
-                link :icon "icon.ico"
-                link :stylesheet "style.css"
-                link.size: 70 "apple-touch-icon" "icon.png"
-            ]
+        import {src/elements/main}!
+
+        result: head [
+            title ""
+            link :icon "icon.ico"
+            link :stylesheet "style.css"
+            link.size: 70 "apple-touch-icon" "icon.png"
         ]
 
         assert -> expect = result
@@ -95,8 +92,8 @@ suite "<link/>" [
 suite "<meta/>" [
 
     test "<meta/> must have attributes" [
-        assert -> not? throws? [_: fragment [meta #[charset: "utf-8"]]]
-        assert -> throws? [_: fragment [meta #[]]]
+        assert -> not? throws? [_: meta #[charset: "utf-8"]]
+        assert -> throws? [_: meta #[]]
     ]
 
     test "<meta/> is a void element and gets a :dictionary" [
@@ -109,13 +106,13 @@ suite "<meta/>" [
             </head>
         }
 
-        result: fragment [
-            head [
-                title ""
-                meta #[charset: "utf-8"]
-                meta #["http-equiv": "content-security-policy" content: "..."]
-                meta #[name: "twitter:card" content: "summary"]
-            ]
+        import {src/elements/main}!
+
+        result: head [
+            title ""
+            meta #[charset: "utf-8"]
+            meta #["http-equiv": "content-security-policy" content: "..."]
+            meta #[name: "twitter:card" content: "summary"]
         ]
 
         assert -> expect = result
@@ -134,13 +131,12 @@ suite "<style/>" [
             </style>
         }
 
-        result: fragment [
-            style.media: "max-width: 720px" {!css
+        result: style.media: "max-width: 720px" 
+            {!css
                 p {
                     color: black;
                 }
             }
-        ]
 
         assert -> expect = result
 
@@ -155,7 +151,7 @@ suite "<title/>" [
             <title>Arturo Language!</title>
         }
 
-        result: fragment [title "Arturo Language!"]
+        result: title "Arturo Language!"
         assert -> expect = result
 
     ]
