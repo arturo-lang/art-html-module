@@ -62,7 +62,7 @@ definitions: $[list :block :dictionary][
     ;;      definitions [
     ;;          term "Arturo" 
     ;;          term "Python" 
-    ;;          term "RUby" 
+    ;;          term "Ruby" 
     ;;          detail "Dynamic Languages"
     ;;      ]
     ;;      ; <dl>
