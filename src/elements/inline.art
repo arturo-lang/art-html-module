@@ -4,32 +4,37 @@
 ;; Defines the semantics and style of a text content.
 ;; For Html.art, those are injected into ``body``.
 
-link: $[][]
-abbreviation: $[][]
-bold: $[][]
-biDirectional: $[][]
-overrideDirection: $[][]
-breakLine: $[][]
-cite: $[][]
-code: $[][]
-data: $[][]
-definition: $[][]
-emphasis: $[][]
-idiomatic: $[][]
-keyboard: $[][]
-mark: $[][]
-quote: $[][]
-strikethrough: $[][]
-sample: $[][]
-small: $[][]
-span: $[][]
-strong: $[][]
-sub: $[][]
-sup: $[][]
-time: $[][]
-underline: $[][]
-variable: $[][]
-wordBreak: $[][] 
+import ./{_generator}!
+
+a:      newElement 'a      :any
+abbr:   newElement 'abbr   :inline
+b:      newElement 'b      :inline
+bdi:    newElement 'bdi    :any
+bdo:    newElement 'bdo    :any
+br:     newElement 'br     :void
+cite:   newElement 'cite   :any
+code:   newElement 'code   :inline
+data:   newElement 'data   :any
+dfn:    newElement 'dfn    :inline
+em:     newElement 'em     :inline
+i:      newElement 'i      :inline
+kbd:    newElement 'kbd    :any
+mark:   newElement 'mark   :inline
+q:      newElement 'q      :any
+s:      newElement 's      :inline
+rp:     newElement 'rp     :inline
+rt:     newElement 'rt     :inline
+ruby:   newElement 'ruby   :group
+samp:   newElement 'samp   :any
+small:  newElement 'small  :any
+span:   newElement 'span   :any
+strong: newElement 'strong :inline
+sub:    newElement 'sub    :any
+sup:    newElement 'sup    :any
+time:   newElement 'time   :any
+u:      newElement 'u      :inline
+var:    newElement 'var    :inline
+wbr:    newElement 'wbr    :void
 
 
 ; TODO: decide how to work:
