@@ -35,9 +35,3 @@ time:   newElement 'time   :any
 u:      newElement 'u      :inline
 var:    newElement 'var    :inline
 wbr:    newElement 'wbr    :void
-
-
-; TODO: decide how to work:
-; * rt
-; * ruby
-; * rp
