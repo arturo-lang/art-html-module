@@ -16,6 +16,7 @@ head: $[content :block][
 
 body: $[content :block][
     import ./{section}!
+    import ./{text}!
 
     element 'body content
 ]
