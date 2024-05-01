@@ -1,4 +1,8 @@
 
+_kebab: $[content :string][
+    replace content "_" "-"
+]
+
 element: $[tag :string :literal content :block :string][
     ;; Elements refers to the normal elements defined by the HTML5 standard.
     ;;
@@ -16,7 +20,7 @@ element: $[tag :string :literal content :block :string][
     ;; Read more about elements here: 
     ;; <https://html.spec.whatwg.org/multipage/syntax.html#elements-2/>
 
-    attributes: (join.with: " " map attrs [key value] -> render {|key|="|value|"})
+    attributes: (join.with: " " map attrs [key value] -> render {|_kebab key|="|value|"})
     if attributes <> "" -> prepend 'attributes " "
 
     if block? content ->
@@ -47,8 +51,8 @@ voidElement: $[tag :string :literal htmlAttributes :dictionary][
     ;; <https://html.spec.whatwg.org/multipage/syntax.html#void-elements/>
     
     attributes: (
-        map htmlAttributes [key value] -> render {|key|="|value|"} 
-            | append (map attrs [key value] -> render {|key|="|value|"})
+        map htmlAttributes [key value] -> render {|_kebab key|="|value|"} 
+            | append (map attrs [key value] -> render {|_kebab key|="|value|"})
             | join.with: " " 
     )
 
