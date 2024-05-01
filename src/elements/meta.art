@@ -8,39 +8,11 @@
 
 import ./{_generator}!
 
-base: $[attributes :dictionary][
-    attrKeys: keys attributes
-    unless (any? @[in? "href" attrKeys, in? "target" attrKeys]) [ 
-        throw "<base/> needs 'href, 'target or both attributes."
-    ]
-
-    voidElement 'base attributes
-]
-
-metaLink: $[category :string :type :literal url :string][
-    if contains? [:type :literal] type category [
-        category: drop ~"|category|"
-    ]
-
-    attributes: #[rel: category href: url]
-    
-    if integer? size: <= attr 'size [
-        attributes\size: ~"|size|x|size|"  
-    ]
-
-    voidElement 'link attributes
-]
-
-meta: $[attributes :dictionary][
-    if empty? attributes -> throw "<meta> needs attributes."
-    voidElement 'meta attributes
-]
-
+base: newElement 'base :void
+link: newElement 'link :void
+meta: newElement 'meta :void
 style: $[css :string][
     element 'style join @["\n" indent.n: 2 css "\n"]
 ]
-
-title: $[content :string][
-    element 'title content
-]
+title: newElement 'title :text
 
