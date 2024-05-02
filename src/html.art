@@ -30,6 +30,7 @@ fragment: $[content :block][
     import ./{embedded}!
     import ./{scripting}!
     import ./{edits}!
+    import ./{table}!
 
     first @content
 ]

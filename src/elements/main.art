@@ -14,6 +14,7 @@ body: $[content :block][
     import ./{embedded}!
     import ./{scripting}!
     import ./{edits}!
+    import ./{table}!
 
     element 'body content
 ]
