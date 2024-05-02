@@ -15,6 +15,7 @@ body: $[content :block][
     import ./{scripting}!
     import ./{edits}!
     import ./{table}!
+    import ./{forms}!
 
     element 'body content
 ]

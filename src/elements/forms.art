@@ -4,16 +4,17 @@
 ;; Related to forms submition.
 ;; For Html.art, those are injected into ``body``.
 
-button: $[][]
-dataList: $[][]
-fieldSet: $[][]
-form: $[][]
-input: $[][]
-label: $[][]
-legend: $[][]
-meter: $[][]
-group: $[][] ; Must be inside ``select``
-output: $[][]
-progress: $[][]
-select: $[][]
-textArea: $[][]
+button: newElement 'button :any
+datalist: newElement 'datalist :group
+fieldset: newElement 'fieldset :group
+form: newElement 'form :group
+input: newElement 'input :void
+label: newElement 'label :any
+legend: newElement 'legend :text
+meter: newElement 'meter :text
+optgroup: newElement 'optgroup :group
+option: newElement 'option :any
+output: newElement 'output :any
+progress: newElement 'progress :any
+select: newElement 'select :group
+textarea: newElement 'textarea :any
