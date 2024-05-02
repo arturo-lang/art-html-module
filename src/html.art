@@ -31,6 +31,8 @@ fragment: $[content :block][
     import ./{scripting}!
     import ./{edits}!
     import ./{table}!
+    import ./{forms}!
+    import ./{interactives}!
 
     first @content
 ]
