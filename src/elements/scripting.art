@@ -3,6 +3,6 @@
 ;;
 ;; Ways to make your website more dynamic.
 
-canvas: $[][]
-noScript: $[][]
-script: $[][]
+canvas: newElement 'canvas :any
+noscript: newElement 'noscript :any
+script: newElement 'script :any

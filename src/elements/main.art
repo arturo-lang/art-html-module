@@ -12,6 +12,7 @@ body: $[content :block][
     import ./{inline}!
     import ./{multimedia}!
     import ./{embedded}!
+    import ./{scripting}!
 
     element 'body content
 ]
