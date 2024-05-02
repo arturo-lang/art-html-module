@@ -4,9 +4,9 @@
 ;; Images, videos, audios...
 ;; For Html.art, those are injected into ``body``.
 
-area: $[][]
-audio: $[][]
-image: $[][]
-imageMap: $[][]
-track: $[][]
-video: $[][]
+area: newElement 'area :void
+audio: newElement 'audio :any
+img: newElement 'img :void
+map: newElement 'map :group
+track: newElement 'track :void
+video: newElement 'video :any

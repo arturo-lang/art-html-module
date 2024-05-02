@@ -23,6 +23,9 @@ html: $[page :block][
 fragment: $[content :block][
     import ./{elements/main}!
     import ./{elements/meta}!
+    import ./{elements/section}!
+    import ./{elements/text}!
+    import ./{elements/inline}!
 
     first @content
 ]
