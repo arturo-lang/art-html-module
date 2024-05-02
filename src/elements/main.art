@@ -9,6 +9,7 @@ head: $[content :block][
 body: $[content :block][
     import ./{section}!
     import ./{text}!
+    import ./{inline}!
 
     element 'body content
 ]
