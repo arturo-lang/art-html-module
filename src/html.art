@@ -26,6 +26,7 @@ fragment: $[content :block][
     import ./{elements/section}!
     import ./{elements/text}!
     import ./{elements/inline}!
+    import ./{multimedia}!
 
     first @content
 ]

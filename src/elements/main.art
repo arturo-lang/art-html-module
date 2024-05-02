@@ -10,6 +10,7 @@ body: $[content :block][
     import ./{section}!
     import ./{text}!
     import ./{inline}!
+    import ./{multimedia}!
 
     element 'body content
 ]
