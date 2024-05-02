@@ -29,6 +29,7 @@ fragment: $[content :block][
     import ./{multimedia}!
     import ./{embedded}!
     import ./{scripting}!
+    import ./{edits}!
 
     first @content
 ]

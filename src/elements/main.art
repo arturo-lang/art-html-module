@@ -13,6 +13,7 @@ body: $[content :block][
     import ./{multimedia}!
     import ./{embedded}!
     import ./{scripting}!
+    import ./{edits}!
 
     element 'body content
 ]
