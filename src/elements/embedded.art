@@ -3,11 +3,11 @@
 ;;
 ;; For Html.art, those are injected into ``body``.
 
-embed: $[][]
-iFrame: $[][]
-object: $[][]
-picture: $[][]
-portal: $[][]
-source: $[][]
-svg: $[][]
-math: $[][]
+embed: newElement 'embed :void
+iframe: newElement 'iframe :any
+object: newElement 'object :any
+picture: newElement 'picture :group
+portal: newElement 'portal :group
+source: newElement 'source :void
+svg: newElement 'svg :any
+math: newElement 'math :any

@@ -11,6 +11,7 @@ body: $[content :block][
     import ./{text}!
     import ./{inline}!
     import ./{multimedia}!
+    import ./{embedded}!
 
     element 'body content
 ]

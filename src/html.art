@@ -27,6 +27,7 @@ fragment: $[content :block][
     import ./{elements/text}!
     import ./{elements/inline}!
     import ./{multimedia}!
+    import ./{embedded}!
 
     first @content
 ]
