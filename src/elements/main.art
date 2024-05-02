@@ -17,6 +17,7 @@ body: $[content :block][
     import ./{table}!
     import ./{forms}!
     import ./{interactives}!
+    import ./{components}!
 
     element 'body content
 ]

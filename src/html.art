@@ -33,6 +33,7 @@ fragment: $[content :block][
     import ./{table}!
     import ./{forms}!
     import ./{interactives}!
+    import ./{components}!
 
     first @content
 ]
