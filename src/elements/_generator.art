@@ -3,37 +3,6 @@ _kebab: $[content :string][
     replace content "_" "-"
 ]
 
-element: $[tag :string :literal content :block :string][
-    ;; Elements refers to the normal elements defined by the HTML5 standard.
-    ;;
-    ;; Format
-    ;; ------
-    ;; * They follows the pattern: ``<tag key="value" .../>content<tag />``.
-    ;; * When ``content`` is a :block, the content will be intended by 2 spaces.
-    ;; 
-    ;; Features
-    ;; --------
-    ;; Use Arturo's attributes to dynamically add html's attributes to it.
-    ;;
-    ;; Extra
-    ;; -----
-    ;; Read more about elements here: 
-    ;; <https://html.spec.whatwg.org/multipage/syntax.html#elements-2/>
-
-    attributes: (join.with: " " map attrs [key value] -> render {|_kebab key|="|value|"})
-    if attributes <> "" -> prepend 'attributes " "
-
-    if block? content ->
-        join.with: "\n" @[
-            ~"<|tag||attributes|>" 
-            indent.n: 2 join.with: "\n" @content
-            ~"</|tag|>"
-        ] 
-
-    if string? content ->
-        ~"<|tag||attributes|>|content|</|tag|>"
-]
-
 voidElement: $[tag :string :literal htmlAttributes :dictionary][
     ;; Void elements are elements without closing-tags.
     ;;
@@ -60,34 +29,43 @@ voidElement: $[tag :string :literal htmlAttributes :dictionary][
     ~"<|tag||attributes|/>" 
 ]
 
-newElement: $[tag :string :literal kind :type][
+element: $[tag :string :literal content :block :string :dictionary][
+    ;; Elements refers to the normal elements defined by the HTML5 standard.
+    ;;
+    ;; Format
+    ;; ------
+    ;; * They follows the pattern: ``<tag key="value" .../>content<tag />``.
+    ;; * When ``content`` is a :block, the content will be intended by 2 spaces.
+    ;; 
+    ;; Features
+    ;; --------
+    ;; Use Arturo's attributes to dynamically add html's attributes to it.
+    ;;
+    ;; Extra
+    ;; -----
+    ;; Read more about elements here: 
+    ;; <https://html.spec.whatwg.org/multipage/syntax.html#elements-2/>
 
-    head: [content]
-    body: [element] ++ (@[tag]) ++ [content]
+    if dictionary? content ->
+        return voidElement tag content
 
-    if in? kind [:group :section] -> 
-        append 'head :block
+    attributes: (join.with: " " map attrs [key value] -> render {|_kebab key|="|value|"})
+    if attributes <> "" -> prepend 'attributes " "
 
-    if in? kind [:text :inline] -> 
-        append 'head :string
-    
-    if in? kind [:any :default] -> 
-        append 'head [:block :string]
+    if block? content ->
+        join.with: "\n" @[
+            ~"<|tag||attributes|>" 
+            indent.n: 2 join.with: "\n" @content
+            ~"</|tag|>"
+        ] 
 
-    if in? kind [:void] [
-        append 'head :dictionary
-        drop 'body
-        prepend 'body [voidElement]
-    ]
-
-    function head body
-    
+    if string? content ->
+        ~"<|tag||attributes|>|content|</|tag|>"
 ]
 
-_generateElements: $[definitions :block][
-    ensure -> even? size block
-    loop definitions [tag kind][
-        let tag 
-            newElement tag kind
-    ]
+newElement: $[tag :string :literal][
+    head: [content :string :block :dictionary]
+    body: [element] ++ (@[tag]) ++ [content]
+
+    function head body
 ]
