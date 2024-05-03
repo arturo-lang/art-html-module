@@ -3,7 +3,7 @@ _kebab: $[content :string][
     replace content "_" "-"
 ]
 
-voidElement: $[tag :string :literal htmlAttributes :dictionary][
+voidElement: $[tag :string :literal :word htmlAttributes :dictionary][
     ;; Void elements are elements without closing-tags.
     ;;
     ;; Format
@@ -29,7 +29,7 @@ voidElement: $[tag :string :literal htmlAttributes :dictionary][
     ~"<|tag||attributes|/>" 
 ]
 
-element: $[tag :string :literal content :block :string :dictionary][
+element: $[tag :string :literal :word content :block :string :dictionary][
     ;; Elements refers to the normal elements defined by the HTML5 standard.
     ;;
     ;; Format
@@ -63,7 +63,7 @@ element: $[tag :string :literal content :block :string :dictionary][
         ~"<|tag||attributes|>|content|</|tag|>"
 ]
 
-newElement: $[tag :string :literal][
+newElement: $[tag :string :literal :word][
     head: [content :string :block :dictionary]
     body: [element] ++ (@[tag]) ++ [content]
 
