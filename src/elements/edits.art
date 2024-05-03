@@ -6,7 +6,5 @@
 
 import ./{_generator}!
 
-_generateElements [
-    del :default
-    ins :default
-]
+del: newElement 'del
+ins: newElement 'ins

@@ -6,7 +6,5 @@
 
 import ./{_generator}!
 
-_generateElements [
-    slot        :default
-    template    :default
-]
+slot:     newElement 'slot
+template: newElement 'template

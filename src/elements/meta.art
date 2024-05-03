@@ -8,12 +8,10 @@
 
 import ./{_generator}!
 
-_generateElements [
-    base    :void
-    link    :void
-    meta    :void
-    title   :inline
-]
+base:  newElement 'base
+link:  newElement 'link
+meta:  newElement 'meta
+title: newElement 'title
 
 style: $[css :string][
     element 'style join @["\n" indent.n: 2 css "\n"]

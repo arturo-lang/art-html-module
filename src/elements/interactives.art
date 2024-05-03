@@ -6,8 +6,6 @@
 
 import ./{_generator}!
 
-_generateElements [
-    details :default
-    dialog  :default
-    summary :default
-]
+details: newElement 'details
+dialog:  newElement 'dialog 
+summary: newElement 'summary

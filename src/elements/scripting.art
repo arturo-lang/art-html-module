@@ -5,8 +5,6 @@
 
 import {_generator}!
 
-_generateElements [
-    canvas      :default
-    noscript    :default
-    script      :default
-]
+canvas:   newElement 'canvas
+noscript: newElement 'noscript
+script:   newElement 'script

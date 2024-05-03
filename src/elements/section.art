@@ -6,21 +6,19 @@
 
 import ./{_generator}!
 
-_generateElements [
-    address :default
-    article :default
-    aside   :default
-    footer  :default
-    header  :default
-    h1      :default
-    h2      :default
-    h3      :default
-    h4      :default
-    h5      :default
-    h6      :default
-    hgroup  :default
-    main    :default
-    nav     :default
-    section :default
-    search  :default
-]
+address: newElement 'address
+article: newElement 'article
+aside:   newElement 'aside
+footer:  newElement 'footer
+header:  newElement 'header
+h1:      newElement 'h1
+h2:      newElement 'h2
+h3:      newElement 'h3
+h4:      newElement 'h4
+h5:      newElement 'h5
+h6:      newElement 'h6
+hgroup:  newElement 'hgroup
+main:    newElement 'main
+nav:     newElement 'nav
+section: newElement 'section
+search:  newElement 'search

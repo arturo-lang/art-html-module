@@ -5,13 +5,11 @@
 
 import ./{_generator}!
 
-_generateElements [
-    embed   :void
-    iframe  :default
-    object  :default
-    picture :default
-    portal  :default
-    source  :void
-    svg     :default
-    math    :default
-]
+embed:   newElement 'embed
+iframe:  newElement 'iframe
+object:  newElement 'object
+picture: newElement 'picture
+portal:  newElement 'portal
+source:  newElement 'source
+svg:     newElement 'svg
+math:    newElement 'math

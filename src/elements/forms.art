@@ -6,21 +6,19 @@
 
 import ./{_generator}!
 
-_generateElements [
-    button      :default
-    datalist    :default
-    fieldset    :default
-    form        :default
-    input       :void
-    label       :default
-    legend      :default
-    meter       :default
-    optgroup    :default
-    option      :default
-    output      :default
-    progress    :default
-    select      :default
-    textarea    :default
-]
+button:   newElement 'button
+datalist: newElement 'datalist
+fieldset: newElement 'fieldset
+form:     newElement 'form
+input:    newElement 'input
+label:    newElement 'label
+legend:   newElement 'legend
+meter:    newElement 'meter
+optgroup: newElement 'optgroup
+option:   newElement 'option
+output:   newElement 'output
+progress: newElement 'progress
+select:   newElement 'select
+textarea: newElement 'textarea
 
 

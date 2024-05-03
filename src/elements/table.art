@@ -7,15 +7,13 @@
 
 import ./{_generator}!
 
-_generateElements [
-    caption     :default
-    col         :void
-    colgroup    :default
-    table       :default
-    tbody       :default
-    td          :default
-    tfoot       :default
-    th          :default
-    thead       :default
-    tr          :default
-]
+caption:  newElement 'caption
+col:      newElement 'col
+colgroup: newElement 'colgroup
+table:    newElement 'table
+tbody:    newElement 'tbody
+td:       newElement 'td
+tfoot:    newElement 'tfoot
+th:       newElement 'th
+thead:    newElement 'thead
+tr:       newElement 'tr

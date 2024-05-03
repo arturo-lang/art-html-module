@@ -6,11 +6,9 @@
 
 import ./{_generator}!
 
-_generateElements [
-    area    :void
-    audio   :default
-    img     :void
-    map     :default
-    track   :void
-    video   :default
-]
+area:  newElement 'area
+audio: newElement 'audio
+img:   newElement 'img
+map:   newElement 'map
+track: newElement 'track
+video: newElement 'video
