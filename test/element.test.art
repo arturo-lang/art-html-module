@@ -113,3 +113,35 @@ test "dynamic attributes follows standard" [
 
     assert -> expect = result
 ]
+
+
+test "snake-case should be converted to kebab" [
+    divisory: $[x][element 'div x]
+    expect: {!html
+        <div aria-valuenow="50"></div>
+    }
+
+    result: divisory.aria_valuenow: 50 ""
+    assert -> expect = result
+
+]
+
+
+test "auto void elements when pass a :dictionary as parameter" [
+    input: $[x][element 'input x]
+    expect: {!html
+        <input type="email"></input>
+    }
+
+    result: input.type: "email" ""
+    assert -> expect = result
+    
+
+    expect: {!html
+        <input type="email"/>
+    }
+
+    result: input #[type: "email"]
+    assert -> expect = result
+
+]
