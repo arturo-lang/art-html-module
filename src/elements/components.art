@@ -4,5 +4,9 @@
 ;; A way to create custom components.
 ;; For Html.art, those are injected into ``body``.
 
-slot: newElement 'slot :any
-template: newElement 'template :any
+import ./{_generator}!
+
+_generateElements [
+    slot        :default
+    template    :default
+]

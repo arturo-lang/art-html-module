@@ -4,13 +4,18 @@
 ;; Include data into table format.
 ;; For Html.art, those are injected into ``body``.
 
-caption: newElement 'caption :any
-col: newElement 'col :void
-colgroup: newElement 'colgroup :group
-table: newElement 'table :group
-tbody: newElement 'tbody :group
-td: newElement 'td :any
-tfoot: newElement 'tfoot :group
-th: newElement 'th :any
-thead: newElement 'thead :group
-tr: newElement 'tr :group
+
+import ./{_generator}!
+
+_generateElements [
+    caption     :default
+    col         :void
+    colgroup    :default
+    table       :default
+    tbody       :default
+    td          :default
+    tfoot       :default
+    th          :default
+    thead       :default
+    tr          :default
+]

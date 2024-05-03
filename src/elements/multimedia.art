@@ -4,9 +4,13 @@
 ;; Images, videos, audios...
 ;; For Html.art, those are injected into ``body``.
 
-area: newElement 'area :void
-audio: newElement 'audio :any
-img: newElement 'img :void
-map: newElement 'map :group
-track: newElement 'track :void
-video: newElement 'video :any
+import ./{_generator}!
+
+_generateElements [
+    area    :void
+    audio   :default
+    img     :void
+    map     :default
+    track   :void
+    video   :default
+]

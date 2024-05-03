@@ -6,19 +6,21 @@
 
 import ./{_generator}!
 
-address: newElement 'address :any
-article: newElement 'article :section
-aside:   newElement 'aside   :section
-footer:  newElement 'footer  :section
-header:  newElement 'header  :section
-h1:      newElement 'h1      :inline
-h2:      newElement 'h2      :inline
-h3:      newElement 'h3      :inline
-h4:      newElement 'h4      :inline
-h5:      newElement 'h5      :inline
-h6:      newElement 'h6      :inline
-hgroup:  newElement 'hgroup  :group
-main:    newElement 'main    :section
-nav:     newElement 'nav     :section
-section: newElement 'section :section
-search:  newElement 'search  :section
+_generateElements [
+    address :default
+    article :default
+    aside   :default
+    footer  :default
+    header  :default
+    h1      :default
+    h2      :default
+    h3      :default
+    h4      :default
+    h5      :default
+    h6      :default
+    hgroup  :default
+    main    :default
+    nav     :default
+    section :default
+    search  :default
+]

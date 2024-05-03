@@ -71,7 +71,7 @@ newElement: $[tag :string :literal kind :type][
     if in? kind [:text :inline] -> 
         append 'head :string
     
-    if in? kind [:any] -> 
+    if in? kind [:any :default] -> 
         append 'head [:block :string]
 
     if in? kind [:void] [
@@ -82,4 +82,12 @@ newElement: $[tag :string :literal kind :type][
 
     function head body
     
+]
+
+_generateElements: $[definitions :block][
+    ensure -> even? size block
+    loop definitions [tag kind][
+        let tag 
+            newElement tag kind
+    ]
 ]

@@ -3,6 +3,10 @@
 ;;
 ;; Ways to make your website more dynamic.
 
-canvas: newElement 'canvas :any
-noscript: newElement 'noscript :any
-script: newElement 'script :any
+import {_generator}!
+
+_generateElements [
+    canvas      :default
+    noscript    :default
+    script      :default
+]

@@ -4,6 +4,10 @@
 ;; Some interactives elements.
 ;; For Html.art, those are injected into ``body``.
 
-details: newElement 'details :group
-dialog: newElement 'dialog :group
-summary: newElement 'summary :any
+import ./{_generator}!
+
+_generateElements [
+    details :default
+    dialog  :default
+    summary :default
+]

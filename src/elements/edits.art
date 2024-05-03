@@ -4,5 +4,9 @@
 ;; Indicates edition on the document.
 ;; For Html.art, those are injected into ``html``.
 
-del: newElement 'del :any
-ins: newElement 'ins :any
+import ./{_generator}!
+
+_generateElements [
+    del :default
+    ins :default
+]

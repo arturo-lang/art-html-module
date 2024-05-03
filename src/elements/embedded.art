@@ -3,11 +3,15 @@
 ;;
 ;; For Html.art, those are injected into ``body``.
 
-embed: newElement 'embed :void
-iframe: newElement 'iframe :any
-object: newElement 'object :any
-picture: newElement 'picture :group
-portal: newElement 'portal :group
-source: newElement 'source :void
-svg: newElement 'svg :any
-math: newElement 'math :any
+import ./{_generator}!
+
+_generateElements [
+    embed   :void
+    iframe  :default
+    object  :default
+    picture :default
+    portal  :default
+    source  :void
+    svg     :default
+    math    :default
+]

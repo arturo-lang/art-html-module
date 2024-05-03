@@ -4,17 +4,23 @@
 ;; Related to forms submition.
 ;; For Html.art, those are injected into ``body``.
 
-button: newElement 'button :any
-datalist: newElement 'datalist :group
-fieldset: newElement 'fieldset :group
-form: newElement 'form :group
-input: newElement 'input :void
-label: newElement 'label :any
-legend: newElement 'legend :text
-meter: newElement 'meter :text
-optgroup: newElement 'optgroup :group
-option: newElement 'option :any
-output: newElement 'output :any
-progress: newElement 'progress :any
-select: newElement 'select :group
-textarea: newElement 'textarea :any
+import ./{_generator}!
+
+_generateElements [
+    button      :default
+    datalist    :default
+    fieldset    :default
+    form        :default
+    input       :void
+    label       :default
+    legend      :default
+    meter       :default
+    optgroup    :default
+    option      :default
+    output      :default
+    progress    :default
+    select      :default
+    textarea    :default
+]
+
+

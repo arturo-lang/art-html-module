@@ -6,32 +6,34 @@
 
 import ./{_generator}!
 
-a:      newElement 'a      :any
-abbr:   newElement 'abbr   :inline
-b:      newElement 'b      :inline
-bdi:    newElement 'bdi    :any
-bdo:    newElement 'bdo    :any
-br:     newElement 'br     :void
-cite:   newElement 'cite   :any
-code:   newElement 'code   :inline
-data:   newElement 'data   :any
-dfn:    newElement 'dfn    :inline
-em:     newElement 'em     :inline
-i:      newElement 'i      :inline
-kbd:    newElement 'kbd    :any
-mark:   newElement 'mark   :inline
-q:      newElement 'q      :any
-s:      newElement 's      :inline
-rp:     newElement 'rp     :inline
-rt:     newElement 'rt     :inline
-ruby:   newElement 'ruby   :group
-samp:   newElement 'samp   :any
-small:  newElement 'small  :any
-span:   newElement 'span   :any
-strong: newElement 'strong :inline
-sub:    newElement 'sub    :any
-sup:    newElement 'sup    :any
-time:   newElement 'time   :any
-u:      newElement 'u      :inline
-var:    newElement 'var    :inline
-wbr:    newElement 'wbr    :void
+_generateElements [
+    a       :default
+    abbr    :default
+    b       :default
+    bdi     :default
+    bdo     :default
+    br      :void
+    cite    :default
+    code    :default
+    data    :default
+    dfn     :default
+    em      :default
+    i       :default
+    kbd     :default
+    mark    :default
+    q       :default
+    s       :default
+    rp      :default
+    rt      :default
+    ruby    :default
+    samp    :default
+    small   :default
+    span    :default
+    strongs :default
+    sub     :default
+    sup     :default
+    time    :default
+    u       :default
+    var     :default
+    wbr     :void
+]

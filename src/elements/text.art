@@ -6,17 +6,19 @@
 
 import ./{_generator}!
 
-blockquote: newElement 'blockquote :group
-dd:         newElement 'dd         :any
-div:        newElement 'div        :any
-dl:         newElement 'dl         :group
-dt:         newElement 'dt         :inline
-figcaption: newElement 'figcaption :any
-figure:     newElement 'figure     :group
-hr:         newElement 'hr         :void
-li:         newElement 'li         :any
-menu:       newElement 'menu       :section
-ol:         newElement 'ol         :group
-p:          newElement 'p          :any
-pre:        newElement 'pre        :string
-ul:         newElement 'ul         :group
+_generateElements [
+    blockquote  :default
+    dd          :default
+    div         :default
+    dl          :default
+    dt          :default
+    figcaption  :default
+    figure      :default
+    hr          :void
+    li          :default
+    menu        :default
+    ol          :default
+    p           :default
+    pre         :default
+    ul          :default
+]
