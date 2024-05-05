@@ -1,6 +1,6 @@
 import ./{generator}!
 
-elements: #[
+html: #[
 
     ; Main
     ; ----
@@ -196,4 +196,5 @@ elements: #[
     p:          $ [x] [element 'p           x]
     pre:        $ [x] [element 'pre         x]
     ul:         $ [x] [element 'ul          x]
+
 ]
