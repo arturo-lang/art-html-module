@@ -1,6 +1,10 @@
 
 export module ::
 
+map: method => [
+    map & & &
+]
+
 kebab: method [content :string][
     replace content "_" "-"
 ]
@@ -22,8 +26,8 @@ voidElement: method [tag :string :literal :word htmlAttributes :dictionary][
     ;; <https://html.spec.whatwg.org/multipage/syntax.html#void-\elements/>
     
     attributes: (
-        map htmlAttributes [key value] -> render {|\kebab key|="|value|"} 
-            | append (map attrs [key value] -> render {|\kebab key|="|value|"})
+        \map htmlAttributes [key value] -> render {|\kebab key|="|value|"} 
+            | append (\map attrs [key value] -> render {|\kebab key|="|value|"})
             | join.with: " " 
     )
 
@@ -51,7 +55,7 @@ element: method.public [tag :string :literal content :block :string :dictionary]
     if dictionary? content ->
         return \voidElement tag content
 
-    attributes: (join.with: " " map attrs [key value] -> render {|\kebab key|="|value|"})
+    attributes: (join.with: " " \map attrs [key value] -> render {|\kebab key|="|value|"})
     if attributes <> "" -> prepend 'attributes " "
 
     if block? content ->
