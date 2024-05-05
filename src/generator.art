@@ -1,10 +1,12 @@
 
-_kebab: $[content :string][
+export module ::
+
+kebab: method [content :string][
     replace content "_" "-"
 ]
 
-voidElement: $[tag :string :literal :word htmlAttributes :dictionary][
-    ;; Void elements are elements without closing-tags.
+voidElement: method [tag :string :literal :word htmlAttributes :dictionary][
+    ;; Void \elements are \elements without closing-tags.
     ;;
     ;; Format
     ;; ------
@@ -16,12 +18,12 @@ voidElement: $[tag :string :literal :word htmlAttributes :dictionary][
     ;;
     ;; Extra
     ;; -----
-    ;; Read more about void elements here: 
-    ;; <https://html.spec.whatwg.org/multipage/syntax.html#void-elements/>
+    ;; Read more about void \elements here: 
+    ;; <https://html.spec.whatwg.org/multipage/syntax.html#void-\elements/>
     
     attributes: (
-        map htmlAttributes [key value] -> render {|_kebab key|="|value|"} 
-            | append (map attrs [key value] -> render {|_kebab key|="|value|"})
+        map htmlAttributes [key value] -> render {|\kebab key|="|value|"} 
+            | append (map attrs [key value] -> render {|\kebab key|="|value|"})
             | join.with: " " 
     )
 
@@ -29,8 +31,8 @@ voidElement: $[tag :string :literal :word htmlAttributes :dictionary][
     ~"<|tag||attributes|/>" 
 ]
 
-element: $[tag :string :literal :word content :block :string :dictionary][
-    ;; Elements refers to the normal elements defined by the HTML5 standard.
+element: method.public [tag :string :literal content :block :string :dictionary][
+    ;; \elements refers to the normal \elements defined by the HTML5 standard.
     ;;
     ;; Format
     ;; ------
@@ -43,13 +45,13 @@ element: $[tag :string :literal :word content :block :string :dictionary][
     ;;
     ;; Extra
     ;; -----
-    ;; Read more about elements here: 
-    ;; <https://html.spec.whatwg.org/multipage/syntax.html#elements-2/>
+    ;; Read more about \elements here: 
+    ;; <https://html.spec.whatwg.org/multipage/syntax.html#\elements-2/>
 
     if dictionary? content ->
-        return voidElement tag content
+        return \voidElement tag content
 
-    attributes: (join.with: " " map attrs [key value] -> render {|_kebab key|="|value|"})
+    attributes: (join.with: " " map attrs [key value] -> render {|\kebab key|="|value|"})
     if attributes <> "" -> prepend 'attributes " "
 
     if block? content ->
@@ -61,11 +63,4 @@ element: $[tag :string :literal :word content :block :string :dictionary][
 
     if string? content ->
         ~"<|tag||attributes|>|content|</|tag|>"
-]
-
-newElement: $[tag :string :literal :word][
-    head: [content :string :block :dictionary]
-    body: [element] ++ (@[tag]) ++ [content]
-
-    function head body
 ]
