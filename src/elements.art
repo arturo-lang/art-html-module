@@ -1,0 +1,199 @@
+import ./{generator}!
+
+elements: #[
+
+    ; Main
+    ; ----
+
+    html: $ [page :block][
+        html4: attr 'html4
+
+        doctype: (html4)?
+            -> {!html
+                <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+            }
+            -> {!html
+                <!DOCTYPE html>
+            }
+
+        join.with: "\n" @[
+            doctype
+            element 'html page
+        ]  
+    ]
+
+    body: $ [x] [element 'body x]
+    head: $ [x] [element 'head x]
+
+
+    ; Web Components
+    ; --------------
+
+    slot:     $ [x] [element 'slot     x]
+    template: $ [x] [element 'template x]
+
+
+    ; Editing
+    ; -------
+
+    del: $ [x] [element 'del x]
+    ins: $ [x] [element 'ins x]
+
+
+    ; Embedded Content
+    ; ----------------
+
+    embed:   $ [x] [element 'embed   x]
+    iframe:  $ [x] [element 'iframe  x]
+    object:  $ [x] [element 'object  x]
+    picture: $ [x] [element 'picture x]
+    portal:  $ [x] [element 'portal  x]
+    source:  $ [x] [element 'source  x]
+    svg:     $ [x] [element 'svg     x]
+    math:    $ [x] [element 'math    x]
+
+
+    ; Forms
+    ; -----
+
+    button:   $ [x] [element 'button   x]
+    datalist: $ [x] [element 'datalist x]
+    fieldset: $ [x] [element 'fieldset x]
+    form:     $ [x] [element 'form     x]
+    input:    $ [x] [element 'input    x]
+    label:    $ [x] [element 'label    x]
+    legend:   $ [x] [element 'legend   x]
+    meter:    $ [x] [element 'meter    x]
+    optgroup: $ [x] [element 'optgroup x]
+    option:   $ [x] [element 'option   x]
+    output:   $ [x] [element 'output   x]
+    progress: $ [x] [element 'progress x]
+    select:   $ [x] [element 'select   x]
+    textarea: $ [x] [element 'textarea x]
+
+
+    ; Inline Text
+    ; -----------
+
+    a:      $ [x] [element 'a      x]   
+    abbr:   $ [x] [element 'abbr   x]   
+    b:      $ [x] [element 'b      x]      
+    bdi:    $ [x] [element 'bdi    x]    
+    bdo:    $ [x] [element 'bdo    x]    
+    br:     $ [x] [element 'br     x]     
+    cite:   $ [x] [element 'cite   x]   
+    code:   $ [x] [element 'code   x]   
+    data:   $ [x] [element 'data   x]   
+    dfn:    $ [x] [element 'dfn    x]    
+    em:     $ [x] [element 'em     x]     
+    i:      $ [x] [element 'i      x]      
+    kbd:    $ [x] [element 'kbd    x]    
+    mark:   $ [x] [element 'mark   x]   
+    q:      $ [x] [element 'q      x]      
+    s:      $ [x] [element 's      x]      
+    rp:     $ [x] [element 'rp     x]     
+    rt:     $ [x] [element 'rt     x]     
+    ruby:   $ [x] [element 'ruby   x]   
+    samp:   $ [x] [element 'samp   x]   
+    small:  $ [x] [element 'small  x]  
+    span:   $ [x] [element 'span   x]   
+    strong: $ [x] [element 'strong x]
+    sub:    $ [x] [element 'sub    x]    
+    sup:    $ [x] [element 'sup    x]    
+    time:   $ [x] [element 'time   x]   
+    u:      $ [x] [element 'u      x]      
+    var:    $ [x] [element 'var    x]    
+    wbr:    $ [x] [element 'wbr    x]
+
+
+    ; Interactives
+    ; ------------
+
+    details: $ [x] [element 'details x]
+    dialog:  $ [x] [element 'dialog  x] 
+    summary: $ [x] [element 'summary x]
+
+
+    ; Metadata Content
+    ; ----------------
+
+    base:  $ [x] [element 'base  x]
+    link:  $ [x] [element 'link  x]
+    meta:  $ [x] [element 'meta  x]
+    title: $ [x] [element 'title x]
+    style: $ [x] [element 'style x]
+
+
+    ; Multimedia
+    ; ----------
+
+    area:  $ [x] [element 'area  x]
+    audio: $ [x] [element 'audio x]
+    img:   $ [x] [element 'img   x]
+    map:   $ [x] [element 'map   x]
+    track: $ [x] [element 'track x]
+    video: $ [x] [element 'video x]
+
+
+    ; Scripting
+    ; ---------
+
+    canvas:   $ [x] [element 'canvas   x]
+    noscript: $ [x] [element 'noscript x]
+    script:   $ [x] [element 'script   x]
+
+
+    ; Content Sectioning
+    ; ------------------
+
+    address: $ [x] [element 'address x]
+    article: $ [x] [element 'article x]
+    aside:   $ [x] [element 'aside   x]
+    footer:  $ [x] [element 'footer  x]
+    header:  $ [x] [element 'header  x]
+    h1:      $ [x] [element 'h1      x]
+    h2:      $ [x] [element 'h2      x]
+    h3:      $ [x] [element 'h3      x]
+    h4:      $ [x] [element 'h4      x]
+    h5:      $ [x] [element 'h5      x]
+    h6:      $ [x] [element 'h6      x]
+    hgroup:  $ [x] [element 'hgroup  x]
+    main:    $ [x] [element 'main    x]
+    nav:     $ [x] [element 'nav     x]
+    section: $ [x] [element 'section x]
+    search:  $ [x] [element 'search  x]
+
+
+    ; Tables
+    ; ------
+
+    caption:  $ [x] [element 'caption  x]
+    col:      $ [x] [element 'col      x]
+    colgroup: $ [x] [element 'colgroup x]
+    table:    $ [x] [element 'table    x]
+    tbody:    $ [x] [element 'tbody    x]
+    td:       $ [x] [element 'td       x]
+    tfoot:    $ [x] [element 'tfoot    x]
+    th:       $ [x] [element 'th       x]
+    thead:    $ [x] [element 'thead    x]
+    tr:       $ [x] [element 'tr       x]
+
+
+    ; Text Content
+    ; ------------
+
+    blockquote: $ [x] [element 'blockquote  x]
+    dd:         $ [x] [element 'dd          x]
+    div:        $ [x] [element 'div         x]
+    dl:         $ [x] [element 'dl          x]
+    dt:         $ [x] [element 'dt          x]
+    figcaption: $ [x] [element 'figcaption  x]
+    figure:     $ [x] [element 'figure      x]
+    hr:         $ [x] [element 'hr          x]
+    li:         $ [x] [element 'li          x]
+    menu:       $ [x] [element 'menu        x]
+    ol:         $ [x] [element 'ol          x]
+    p:          $ [x] [element 'p           x]
+    pre:        $ [x] [element 'pre         x]
+    ul:         $ [x] [element 'ul          x]
+]
