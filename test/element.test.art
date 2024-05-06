@@ -1,8 +1,8 @@
 import {unitt}!
-import {src/elements/_generator}!
+import {src/html}!
 
 test "generic elements follows the standard for :string" [
-    result: element "el" "Hello, World!"
+    result: html\element "el" "Hello, World!"
     assert -> "<el>Hello, World!</el>" = result
 ]
 
@@ -17,8 +17,8 @@ test "generic elements follows the standard for nested :block s" [
     ;;      the user shouldn't use '@ to evaluate, the element must do it
 
     breakLine: "<br>"
-    bold: $[x][element "b" x]
-    paragraph: $[x][element "p" x]
+    bold: $[x][html\element "b" x]
+    paragraph: $[x][html\element "p" x]
 
     expect: {!html
         <p>
@@ -51,7 +51,7 @@ test "indentation follows the nesting of elements" [
     ;; ;   Content
     ;; ; </tag>
 
-    divisory: $[x][element "div" x]
+    divisory: $[x][html\element "div" x]
 
     expect: {!html
         <div>
@@ -91,9 +91,9 @@ test "dynamic attributes follows standard" [
     ;; ;   Content
     ;; ; </tag>
 
-    divisory: $[x][element "div" x]
-    entry: $[x][element .name: x "input" ""]
-    button: $[x][element "button" x]
+    divisory: $[x][html\element "div" x]
+    entry: $[x][html\element .name: x "input" ""]
+    button: $[x][html\element "button" x]
 
     expect: {!html
         <div class="login-box">
@@ -116,7 +116,7 @@ test "dynamic attributes follows standard" [
 
 
 test "snake-case should be converted to kebab" [
-    divisory: $[x][element 'div x]
+    divisory: $[x][html\element 'div x]
     expect: {!html
         <div aria-valuenow="50"></div>
     }
@@ -128,7 +128,7 @@ test "snake-case should be converted to kebab" [
 
 
 test "auto void elements when pass a :dictionary as parameter" [
-    input: $[x][element 'input x]
+    input: $[x][html\element 'input x]
     expect: {!html
         <input type="email"></input>
     }
