@@ -1,6 +1,145 @@
-import ./{elements}!
+define :html [
 
-fragment: $[content :block][
-    this: html
-    inspect @content
+    init: method [][
+        elements: [
+            ; Main
+            body head
+
+            ; Web Components
+            slot template
+
+            ; Editing
+            del ins
+
+            ; Embedded Content
+            embed iframe object picture portal source svg math
+
+            ; Forms
+            button datails fieldset form input label legend meter optgroup
+            option output progress select textarea
+
+            ; Inline Text 
+            a abbr b bdi bdo br cite code data dfn em i kbd mark q s rp rt 
+            ruby samp small span strong sub sup time u var wbr
+
+            ; Interactives
+            details dialog summary
+
+            ; Metadata Content 
+            base link meta title style
+
+            ; Multimedia
+            area audio img map track video
+
+            ; Scripting
+            canvas noscript script
+
+            ; Content Sectioning
+            address article aside footer header h1 h2 h3 h4 h5 h6 hgroup main 
+            nav section search
+
+            ; Tables
+            caption col colgroup table tbody td tfoot th thead tr
+
+            ; Text Content
+            blockquote dd div dl dt figcaption figure hr li menu ol p pre ul
+        ]
+        
+        loop elements 'el [
+            body: [\element x]
+            insert 'body 1 to :literal el
+            this\[el]: method [x] body
+        ]
+    ]
+
+    _process: method [content][
+        @content
+    ]
+
+    kebab: method [content :string][
+        replace content "_" "-"
+    ]
+
+    voidElement: method [tag :string :literal :word htmlAttributes :dictionary][
+        ;; Void \elements are \elements without closing-tags.
+        ;;
+        ;; Format
+        ;; ------
+        ;; They follows the pattern: ``<tag key="value" .../>``
+        ;; 
+        ;; Features
+        ;; --------
+        ;; Use Arturo's attributes to dynamically add html's attributes to it.
+        ;;
+        ;; Extra
+        ;; -----
+        ;; Read more about void \elements here: 
+        ;; <https://html.spec.whatwg.org/multipage/syntax.html#void-\elements/>
+        
+        attributes: (
+            map htmlAttributes [key value] -> render {|\kebab key|="|value|"} 
+                | append (map attrs [key value] -> render {|\kebab key|="|value|"})
+                | join.with: " " 
+        )
+
+        if attributes <> "" -> prepend 'attributes " "
+        ~"<|tag||attributes|/>" 
+    ]
+
+    element: method.public [tag :string :literal content :block :string :dictionary][
+        ;; \elements refers to the normal \elements defined by the HTML5 standard.
+        ;;
+        ;; Format
+        ;; ------
+        ;; * They follows the pattern: ``<tag key="value" .../>content<tag />``.
+        ;; * When ``content`` is a :block, the content will be intended by 2 spaces.
+        ;; 
+        ;; Features
+        ;; --------
+        ;; Use Arturo's attributes to dynamically add html's attributes to it.
+        ;;
+        ;; Extra
+        ;; -----
+        ;; Read more about \elements here: 
+        ;; <https://html.spec.whatwg.org/multipage/syntax.html#\elements-2/>
+
+        if dictionary? content ->
+            return \voidElement tag content
+
+        attributes: (join.with: " " map attrs [key value] -> render {|\kebab key|="|value|"})
+        if attributes <> "" -> prepend 'attributes " "
+
+        if block? content ->
+            join.with: "\n" @[
+                ~"<|tag||attributes|>" 
+                indent.n: 2 join.with: "\n" @content
+                ~"</|tag|>"
+            ] 
+
+        if string? content ->
+            ~"<|tag||attributes|>|content|</|tag|>"
+    ]
+
+    html: method [page :block][
+        html4: attr 'html4
+
+        doctype: (html4)?
+            -> {!html
+                <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+            }
+            -> {!html
+                <!DOCTYPE html>
+            }
+
+        join.with: "\n" @[
+            doctype
+            \element 'html page
+        ]  
+    ]
+
 ]
+
+html: to :html []
+fragment: $[content][
+    join.with: "\n" @ html\_process content
+]!
