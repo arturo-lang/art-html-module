@@ -1,1 +1,2 @@
+entry: {src/html}
 requires: [> 0.9.83]
