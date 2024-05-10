@@ -1,6 +1,2 @@
-description: "HTML generator for Arturo"
-author: "Yanis Zafirópulos"
-
 entry: {src/html}
-depends: []
 requires: [> 0.9.83]
